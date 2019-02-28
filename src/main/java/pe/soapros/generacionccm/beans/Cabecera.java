@@ -5,7 +5,7 @@ public class Cabecera {
 	DetallePDF detallepdf;
 	DetalleTXT detalleTXT;
 	detalleHTML detalleHTML;
-	DetalleSMS detalleSMS;
+	DetalleSMS EnvioSMS;
 	DetalleTrazabilidad detalleTrazabilidad;
 	DetalleServicio detalleServicio;
 	AlmacenamientoS3 almacenamientoS3;
@@ -37,13 +37,13 @@ public class Cabecera {
 	public void setDetalleHTML(detalleHTML detalleHTML) {
 		this.detalleHTML = detalleHTML;
 	}
-	public DetalleSMS getDetalleSMS() {
-		return detalleSMS;
-	}
-	public void setDetalleSMS(DetalleSMS detalleSMS) {
-		this.detalleSMS = detalleSMS;
-	}
 	
+	public DetalleSMS getEnvioSMS() {
+		return EnvioSMS;
+	}
+	public void setEnvioSMS(DetalleSMS envioSMS) {
+		EnvioSMS = envioSMS;
+	}
 	public DetalleServicio getDetalleServicio() {
 		return detalleServicio;
 	}

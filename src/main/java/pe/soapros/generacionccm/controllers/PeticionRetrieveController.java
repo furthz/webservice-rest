@@ -46,7 +46,7 @@ public class PeticionRetrieveController {
 			Peticion peti = new Peticion();
 			Cabecera cab = new Cabecera();
 			//============Origen==========================
-			org.getSistema();
+			org.setSistema("Bizagi");
 			org.setAmbiente("Test");
 			org.setProceso("B-001");
 			org.setSubproceso("B-001-01");

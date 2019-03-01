@@ -18,7 +18,7 @@ public class RegistrarRespuestaController {
 
 	private final static Logger LOGGER = Logger.getLogger("RegistrarRespuestaController");
 
-	@RequestMapping(method = RequestMethod.POST, value = "/registrar/json")
+	@RequestMapping(method = RequestMethod.POST, value = "/registrar/pedido")
 
 	@ResponseBody
 	public Respuesta registerStudent(@Valid  @RequestBody Solicitud solicitud) {

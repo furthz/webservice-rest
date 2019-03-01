@@ -3,7 +3,10 @@ package pe.soapros.generacionccm.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,11 +19,13 @@ import pe.soapros.generacionccm.beans.DetalleSMS;
 import pe.soapros.generacionccm.beans.DetalleServicio;
 import pe.soapros.generacionccm.beans.DetalleTXT;
 import pe.soapros.generacionccm.beans.DetalleTrazabilidad;
+import pe.soapros.generacionccm.beans.Entrada_Peticion;
 import pe.soapros.generacionccm.beans.IndHTML_AlmcS3;
 import pe.soapros.generacionccm.beans.IndPDF_AlmcS3;
 import pe.soapros.generacionccm.beans.IndTXT_AlmcS3;
 import pe.soapros.generacionccm.beans.Origen;
 import pe.soapros.generacionccm.beans.Peticion;
+import pe.soapros.generacionccm.beans.Solicitud;
 import pe.soapros.generacionccm.beans.detalleHTML;
 import pe.soapros.generacionccm.beans.indHTML_AlmcFilenet3;
 import pe.soapros.generacionccm.beans.indPDF_AlmcFilenet;
@@ -32,8 +37,10 @@ public class PeticionRetrieveController {
 	@RequestMapping(method = RequestMethod.GET, value="/student/peticion")
 	
 	@ResponseBody
-	public List<Peticion> getTodasPeticiones() {
+	public List<Peticion> getTodasPeticiones(@Valid  @RequestBody Entrada_Peticion peticion) {
 	List<Peticion> peticionVr;
+	peticionVr = new ArrayList<Peticion>();
+
 			peticionVr = new ArrayList<Peticion>();
 			Origen org = new Origen();
 			Peticion peti = new Peticion();
@@ -159,7 +166,7 @@ public class PeticionRetrieveController {
 			cab.setDetallepdf(detpdf);
 			cab.setDetalleTXT(dettext);
 			cab.setDetalleHTML(dethtml);
-			cab.setDetalleSMS(detsms);
+			cab.setEnvioSMS(detsms);
 			cab.setDetalleTrazabilidad(dettraz);
 			cab.setDetalleServicio(detsServicio);
 			cab.setAlmacenamientoS3(alms3);
@@ -170,7 +177,9 @@ public class PeticionRetrieveController {
 	peti.setCabecera(cab);
 	peti.setNumOperacion("COD001");
 	peticionVr.add(peti);
-		
 	return peticionVr;
 	}
+	
+	
+	
 }

@@ -4,15 +4,22 @@ package pe.soapros.generacionccm.beans;
 import javax.validation.constraints.NotNull;
 
 public class Origen {
-
+	@NotNull(message="Sistema es obligatorio")
 	String sistema;
+	@NotNull(message="ambiente es obligatorio")
 	String ambiente;
+	@NotNull(message="proceso es obligatorio")
 	String proceso;
+	@NotNull(message="subproceso es obligatorio")
 	String subproceso;
-        String fechadeEnvio;
-        String usuario;
-        String identificador1;
-        String identificador2;
+	@NotNull(message="fechadeEnvio es obligatorio")
+	String fechadeEnvio;
+	@NotNull(message="usuario es obligatorio")
+	String usuario;
+	@NotNull(message="identificador1 es obligatorio")
+	String identificador1;
+	@NotNull(message="identificador2 es obligatorio")
+	String identificador2;
 
 	public String getSistema() {
 		return sistema;

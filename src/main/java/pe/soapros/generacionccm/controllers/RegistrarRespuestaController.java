@@ -20,6 +20,7 @@ public class RegistrarRespuestaController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "/registrar/pedido")
 
+	
 	@ResponseBody
 	public Respuesta respuestaSolicitud(@Valid  @RequestBody Solicitud solicitud) {
 

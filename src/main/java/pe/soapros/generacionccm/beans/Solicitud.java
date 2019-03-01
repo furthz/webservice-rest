@@ -1,12 +1,16 @@
 package pe.soapros.generacionccm.beans;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 public class Solicitud {
     
-    @NotNull(message="Origen no puede ser nulo")
+    //@NotNull(message="Origen no puede ser nulo")
+    @Valid
     Origen origen;
     
+    //@NotNull(message="Cabecera no puede ser nulo")
+    //@Valid
     CabeceraIN cabeceraBean;
 
     public Origen getOrigen() {

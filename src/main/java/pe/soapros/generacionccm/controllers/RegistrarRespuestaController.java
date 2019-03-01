@@ -21,7 +21,7 @@ public class RegistrarRespuestaController {
 	@RequestMapping(method = RequestMethod.POST, value = "/registrar/pedido")
 
 	@ResponseBody
-	public Respuesta registerStudent(@Valid  @RequestBody Solicitud solicitud) {
+	public Respuesta respuestaSolicitud(@Valid  @RequestBody Solicitud solicitud) {
 
 		Respuesta respuesta = new Respuesta();
 		respuesta.setOrigen(solicitud.getOrigen());

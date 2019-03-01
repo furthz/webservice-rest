@@ -8,7 +8,11 @@ public class Origen {
 	String sistema;
 	String ambiente;
 	String proceso;
-	String subproceso, fechadeEnvio, usuario, identificador1, identificador2;
+	String subproceso;
+        String fechadeEnvio;
+        String usuario;
+        String identificador1;
+        String identificador2;
 
 	public String getSistema() {
 		return sistema;

@@ -3,7 +3,7 @@ package pe.soapros.generacionccm.beans;
 public class Respuesta {
     Origen origen;
     String numOperacion, pdf;
-    
+
 
     public Origen getOrigen() {
         return origen;
@@ -12,12 +12,13 @@ public class Respuesta {
     public void setOrigen(Origen origen) {
         this.origen = origen;
     }
-    public String getCodigoTransaccion() {
+
+    public String getNumOperacion() {
         return numOperacion;
     }
 
-    public void setCodigoTransaccion(String codigoTransaccion) {
-        this.numOperacion = codigoTransaccion;
+    public void setNumOperacion(String numOperacion) {
+        this.numOperacion = numOperacion;
     }
 
     public String getPdf() {
@@ -26,5 +27,5 @@ public class Respuesta {
 
     public void setPdf(String pdf) {
         this.pdf = pdf;
-    }
+    } 
 }

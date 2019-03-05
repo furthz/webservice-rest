@@ -27,8 +27,6 @@ public class DetallePDFIN {
             this.indPDF = indPDF;
     }
 
-
-
     public String getCodigoPlantilla() {
         return codigoPlantilla;
     }

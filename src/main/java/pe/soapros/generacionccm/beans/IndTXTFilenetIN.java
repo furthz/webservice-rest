@@ -1,9 +1,17 @@
 
 package pe.soapros.generacionccm.beans;
 
+import javax.validation.constraints.NotNull;
+
 class IndTXTFilenetIN {
+    
+    @NotNull(message="indFilenetTXT de IndTXTFilenetIN es obligatorio")
     String indFilenetTXT;
+    
+    @NotNull(message="PropiedadesFilenetTXT de IndTXTFilenetIN es obligatorio")
     PropiedadesFilenetTXT PropiedadesFilenetPDFBean;
+    
+    @NotNull(message="ContentStreamFilenetTXT de IndTXTFilenetIN es obligatorio")
     ContentStreamFilenetTXT contentStreamFilenetPDFBean;
 
     public String getIndFilenetTXT() {

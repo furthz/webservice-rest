@@ -5,8 +5,12 @@ import javax.validation.constraints.NotNull;
 public class Respuesta {
     @NotNull(message="Origen de Respuesta es obligatorio")
     Origen origen;
+    
     @NotNull(message="NumOperacion de Respuesta es obligatorio")
-    String numOperacion, pdf;
+    String numOperacion;
+    
+    @NotNull(message="docBase64 de Respuesta es obligatorio")
+    String docBase64;
 
 
     public Origen getOrigen() {
@@ -25,11 +29,12 @@ public class Respuesta {
         this.numOperacion = numOperacion;
     }
 
-    public String getPdf() {
-        return pdf;
+    public String getDocBase64() {
+        return docBase64;
     }
 
-    public void setPdf(String pdf) {
-        this.pdf = pdf;
-    } 
+    public void setDocBase64(String docBase64) {
+        this.docBase64 = docBase64;
+    }
+      
 }

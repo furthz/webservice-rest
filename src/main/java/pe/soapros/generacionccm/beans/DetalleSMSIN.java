@@ -8,6 +8,8 @@ public class DetalleSMSIN {
     String indSMS;
     @NotNull(message="dataSource de DetalleSMSIN no puede ser nulo")
     String dataSource;
+    @NotNull(message="destinatario de DetalleSMSIN no puede ser nulo")
+    String[] destinatario;
 
     public String getIndSMS() {
         return indSMS;
@@ -23,6 +25,14 @@ public class DetalleSMSIN {
 
     public void setDataSource(String dataSource) {
         this.dataSource = dataSource;
+    }
+
+    public String[] getDestinatario() {
+        return destinatario;
+    }
+
+    public void setDestinatario(String[] destinatario) {
+        this.destinatario = destinatario;
     }
     
     

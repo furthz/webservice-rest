@@ -1,10 +1,19 @@
 
 package pe.soapros.generacionccm.beans;
 
+import javax.validation.constraints.NotNull;
+
 class ContentStreamFilenetPDF {
+    @NotNull(message="length de ContentStreamFilenetPDF es obligatorio")
     String length;
+ 
+    @NotNull(message="mimeTypede de ContentStreamFilenetPDF es obligatorio")
     String mimeType;
+    
+    @NotNull(message="fileName de ContentStreamFilenetPDF es obligatorio")
     String fileName;
+    
+    @NotNull(message="stream de ContentStreamFilenetPDF es obligatorio")
     String stream;
 
     public String getLength() {

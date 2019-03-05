@@ -10,7 +10,7 @@ public class Solicitud {
     Origen origen;
     
     //@NotNull(message="Cabecera no puede ser nulo")
-    //@Valid
+    @Valid
     CabeceraIN cabeceraBean;
 
     public Origen getOrigen() {

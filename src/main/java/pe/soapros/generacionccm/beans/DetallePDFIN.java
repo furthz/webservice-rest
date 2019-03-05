@@ -1,11 +1,22 @@
 package pe.soapros.generacionccm.beans;
 
+import javax.validation.constraints.NotNull;
+
 public class DetallePDFIN {
         //Input Solicitud Petición
+        @NotNull(message="IndPDF indPDF no puede ser nulo")
 	String indPDF;
+        
+        @NotNull(message="CodigoPlantilla no puede ser nulo")
         String codigoPlantilla;
+        
+        @NotNull(message="IndVisualizacion no puede ser nulo")
         String indVisualizacion;
+        
+        @NotNull(message="NombreDocumento no puede ser nulo")
         String nombreDocumento;
+        
+        @NotNull(message="IndGuardado no puede ser nulo")
         String indGuardado;
         
     public String getIndPDF() {

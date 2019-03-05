@@ -1,10 +1,16 @@
 package pe.soapros.generacionccm.beans;
 
+import javax.validation.constraints.NotNull;
+
 public class DetalleHTMLIN
 {
+    @NotNull(message="Ind HTML de DetalleHTMLIN no puede ser nulo")
     String indHTML;
+    @NotNull(message="Codigo Plantilla de DetalleHTMLIN no puede ser nulo")
     String codigoPlantilla;
+    @NotNull(message="Nombre Documento de DetalleHTMLIN no puede ser nulo")
     String nombreDocumento;
+    @NotNull(message="Ind Guardado de DetalleHTMLIN no puede ser nulo")
     String indGuardado;
 
     public String getIndHTML() {

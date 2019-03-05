@@ -1,8 +1,12 @@
 
 package pe.soapros.generacionccm.beans;
 
+import javax.validation.constraints.NotNull;
+
 public class DetalleSMSIN {
+    @NotNull(message="indSMS de DetalleSMSIN no puede ser nulo")
     String indSMS;
+    @NotNull(message="dataSource de DetalleSMSIN no puede ser nulo")
     String dataSource;
 
     public String getIndSMS() {

@@ -1,9 +1,15 @@
 
 package pe.soapros.generacionccm.beans;
 
+import javax.validation.constraints.NotNull;
+
 public class DetalleS3IN {
+    
+    @NotNull(message="IndPDFINDetalleS3 de DetalleS3INes obligatorio")
     IndPDFINDetalleS3 indPDFInDetalleS3Bean;
-    IndTXTINDetalleS3 indTXTInDetalleS3Bean; 
+    @NotNull(message="IndTXTINDetalleS3 de DetalleS3IN es obligatorio")
+    IndTXTINDetalleS3 indTXTInDetalleS3Bean;
+    @NotNull(message="IndHTMLINDetalleS3 de DetalleS3IN es obligatorio")
     IndHTMLINDetalleS3 indHTMLInDetalleS3Bean;
 
     public IndPDFINDetalleS3 getIndPDFInDetalleS3Bean() {

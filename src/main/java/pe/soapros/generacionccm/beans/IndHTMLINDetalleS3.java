@@ -1,8 +1,14 @@
 package pe.soapros.generacionccm.beans;
 
+import javax.validation.constraints.NotNull;
+
 class IndHTMLINDetalleS3 {
+    
+    @NotNull(message="indS3HTML de IndHTMLINDetalleS3 es obligatorio")
     String indS3HTML;
+    @NotNull(message="metadata de IndHTMLINDetalleS3 es obligatorio")
     String metadata;
+    @NotNull(message="rutaURLDestinoHTML de IndHTMLINDetalleS3 es obligatorio")
     String rutaURLDestinoHTML;
 
     public String getIndS3HTML() {

@@ -1,8 +1,13 @@
 package pe.soapros.generacionccm.beans;
 
+import javax.validation.constraints.NotNull;
+
 public class IndPDFINDetalleS3 {
+    @NotNull(message="indS3PDF de IndPDFINDetalleS3 es obligatorio")
     String indS3PDF;
+    @NotNull(message="metadata de IndPDFINDetalleS3es obligatorio")
     String metadata;
+    @NotNull(message="rutaURLDestinoPDF de IndPDFINDetalleS3es obligatorio")
     String rutaURLDestinoPDF;
 
     public String getIndS3PDF() {

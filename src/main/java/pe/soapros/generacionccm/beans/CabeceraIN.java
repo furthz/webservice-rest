@@ -1,15 +1,34 @@
 package pe.soapros.generacionccm.beans;
 
-public class CabeceraIN {
+import javax.validation.constraints.NotNull;
 
+public class CabeceraIN {
+    
+    @NotNull(message="DetallePDFIN de Cabecera es obligatorio")
     DetallePDFIN detallePDFINBean;
+    
+    @NotNull(message="DetalleTXTIN de Cabecera es obligatorio")
     DetalleTXTIN detalleTXTINBean;
+    
+    @NotNull(message="DetalleHTMLIN de Cabecera es obligatorio")
     DetalleHTMLIN detalleHTMLINBean;
+    
+    @NotNull(message="DetalleCorreoIN de Cabecera es obligatorio")
     DetalleCorreoIN detalleCorreoINBean;
+    
+    @NotNull(message="DetalleSMSIN de Cabecera es obligatorio")
     DetalleSMSIN detalleSMSINBean;
+    
+    @NotNull(message="DetalleTrazabilidadCorreoIN de Cabecera es obligatorio")
     DetalleTrazabilidadCorreoIN DetalleTrazabilidadCorreoINBean;
+    
+    @NotNull(message="DetalleServicioGenericoIN de Cabecera es obligatorio")
     DetalleServicioGenericoIN detalleServicioGenericoBean;
+    
+    @NotNull(message="DetalleS3IN de Cabecera es obligatorio")
     DetalleS3IN detalleS3Bean;
+    
+    @NotNull(message="DetalleFilenetIN de Cabecera es obligatorio")
     DetalleFilenetIN detalleFilenetBean;
 
     public DetallePDFIN getDetallePDFINBean() {

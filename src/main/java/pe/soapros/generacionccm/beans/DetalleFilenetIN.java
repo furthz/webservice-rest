@@ -1,10 +1,16 @@
 package pe.soapros.generacionccm.beans;
 
+import javax.validation.constraints.NotNull;
+
 public class DetalleFilenetIN {
     
+    @NotNull(message="repositoryId de DetalleFilenetIN es obligatorio")
     String repositoryId;
+    @NotNull(message="indPDFFilenetBean de DetalleFilenetIN es obligatorio")
     IndPDFFilenetIN indPDFFilenetBean;
+    @NotNull(message="indTXTFilenetBean de DetalleFilenetIN es obligatorio")
     IndTXTFilenetIN indTXTFilenetBean;
+    @NotNull(message="indHTMLFilenetBean de DetalleFilenetIN es obligatorio")
     IndHTMLFilenetIN indHTMLFilenetBean;
 
     public String getRepositoryId() {

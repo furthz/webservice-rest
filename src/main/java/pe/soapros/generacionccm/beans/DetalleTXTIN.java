@@ -1,10 +1,19 @@
 package pe.soapros.generacionccm.beans;
 
+import javax.validation.constraints.NotNull;
+
 public class DetalleTXTIN {
-//Input Solicitud Petición
+    
+    @NotNull(message="IndTXT no puede ser nulo")
     String indTXT;
+    
+    @NotNull(message="Codigo de Plantilla no puede ser nulo")
     String codigoPlantilla;
+    
+    @NotNull(message="Nombre de Documento no puede ser nulo")
     String nombreDocumento;
+    
+    @NotNull(message="Ind Guardado no puede ser nulo")
     String indGuardado;
 
     public String getIndTXT() {

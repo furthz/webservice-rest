@@ -51,7 +51,7 @@ public class PeticionRetrieveController {
 		org.setProceso("B-001");
 		org.setSubproceso("B-001-01");
 		org.setFechadeEnvio("08/01/2019 13:40:05");
-		org.setUsuario("asas");
+		org.setUsuario("RGARCIAM");
 		String[] nuevo = new String[3];
 		nuevo[0] = "CODCLI001";
 		nuevo[1] = "ECMDID001";

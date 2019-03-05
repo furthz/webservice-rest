@@ -76,7 +76,7 @@ public class PeticionRetrieveController {
 		// HTML
 		detalleHTML dethtml = new detalleHTML();
 		dethtml.setIndHTML("S");
-		dethtml.setArchivo("ruta local + filename");
+		dethtml.setArchivo("C:/Archivos/HTML/archivo.html");
 		dethtml.setIndExito("S");
 		dethtml.setCodError("0");
 		dethtml.setMsgError("OK");
@@ -87,7 +87,7 @@ public class PeticionRetrieveController {
 		DetalleRespuesta det =  new DetalleRespuesta();
 		DetalleRespuesta det2 =  new DetalleRespuesta();
 		det.setNumero("956325698");
-		det.setArchivo("ruta local + fileName");
+		det.setArchivo("C:/Archivos/SMS/sms01.txt");
 		det.setIndExito("S");
 		det.setCodEstado("0");
 		det.setMsgEstado("OK");
@@ -95,7 +95,7 @@ public class PeticionRetrieveController {
 		DetalleRespuesta[] respuesta = new DetalleRespuesta[2];
 		respuesta[0]= det;
 		det2.setNumero("987586945");
-		det2.setArchivo("ruta local + filename");
+		det2.setArchivo("C:/Archivos/SMS/sms02.txt");
 		det2.setIndExito("S");
 		det2.setCodEstado("0");
 		det2.setMsgEstado("OK");

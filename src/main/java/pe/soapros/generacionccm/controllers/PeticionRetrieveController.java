@@ -68,7 +68,7 @@ public class PeticionRetrieveController {
 		// Texto
 		DetalleTXT dettext = new DetalleTXT();
 		dettext.setIndTXT("S");
-		dettext.setArchivo("ruta local");
+		dettext.setArchivo("C:/Archivos/TXT/archivo.txt");
 		dettext.setIndExito("S");
 		dettext.setCodError("0");
 		dettext.setMsgError("OK");

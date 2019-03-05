@@ -1,7 +1,6 @@
 package pe.soapros.generacionccm.controllers;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -15,6 +14,7 @@ import pe.soapros.generacionccm.beans.AlmacenamientoFilenet;
 import pe.soapros.generacionccm.beans.AlmacenamientoS3;
 import pe.soapros.generacionccm.beans.Cabecera;
 import pe.soapros.generacionccm.beans.DetallePDF;
+import pe.soapros.generacionccm.beans.DetalleRespuesta;
 import pe.soapros.generacionccm.beans.DetalleSMS;
 import pe.soapros.generacionccm.beans.DetalleServicio;
 import pe.soapros.generacionccm.beans.DetalleTXT;
@@ -25,7 +25,6 @@ import pe.soapros.generacionccm.beans.IndPDF_AlmcS3;
 import pe.soapros.generacionccm.beans.IndTXT_AlmcS3;
 import pe.soapros.generacionccm.beans.Origen;
 import pe.soapros.generacionccm.beans.Peticion;
-import pe.soapros.generacionccm.beans.Solicitud;
 import pe.soapros.generacionccm.beans.detalleHTML;
 import pe.soapros.generacionccm.beans.indHTML_AlmcFilenet3;
 import pe.soapros.generacionccm.beans.indPDF_AlmcFilenet;
@@ -34,26 +33,30 @@ import pe.soapros.generacionccm.beans.indTXT_AlmcFilenet2;
 @Controller
 public class PeticionRetrieveController {
 
-	@RequestMapping(method = RequestMethod.POST, value = "/consultar/pedido")
+	
+
+	@RequestMapping(method = RequestMethod.GET, value = "/consultar/pedido")
 
 	@ResponseBody
 	public Peticion getTodasPeticiones(@Valid @RequestBody Entrada_Peticion peticion) {
-		// List<Peticion> peticionVr;
-		// peticionVr = new ArrayList<Peticion>();
-
+  
 		//peticionVr = new ArrayList<Peticion>();
 		Origen org = new Origen();
 		Peticion peti = new Peticion();
 		Cabecera cab = new Cabecera();
+		
 		// ============Origen==========================
 		org.setSistema("Bizagi");
 		org.setAmbiente("Test");
 		org.setProceso("B-001");
 		org.setSubproceso("B-001-01");
-		org.setFechadeEnvio("2019/02/02 14:23:00");
+		org.setFechadeEnvio("08/01/2019 13:40:05");
 		org.setUsuario("asas");
-		org.setIdentificador1("1");
-		org.setIdentificador2("2");
+		String[] nuevo = new String[3];
+		nuevo[0] = "CODCLI001";
+		nuevo[1] = "ECMDID001";
+		nuevo[2] = "21380249832409324";
+		org.setIdentificador(nuevo);
 
 		// ===============Cabecera======================
 
@@ -83,11 +86,25 @@ public class PeticionRetrieveController {
 		// SMS
 		DetalleSMS detsms = new DetalleSMS();
 		detsms.setIndSMS("S");
-		detsms.setArchivo("ruta local + filename");
-		detsms.setIndExito("S");
-		detsms.setCodError("0");
-		detsms.setMsgError("OK");
-		detsms.setValorretorno("");
+		DetalleRespuesta det =  new DetalleRespuesta();
+		DetalleRespuesta det2 =  new DetalleRespuesta();
+		det.setNumero("956325698");
+		det.setArchivo("ruta local + fileName");
+		det.setIndExito("S");
+		det.setCodEstado("0");
+		det.setMsgEstado("OK");
+		det.setValorRetorno("");
+		DetalleRespuesta[] respuesta = new DetalleRespuesta[2];
+		respuesta[0]= det;
+		det2.setNumero("987586945");
+		det2.setArchivo("ruta local + filename");
+		det2.setIndExito("S");
+		det2.setCodEstado("0");
+		det2.setMsgEstado("OK");
+		det2.setValorRetorno("");
+		respuesta[1] = det2;
+		detsms.setNumeroRespuesta(respuesta);
+	
 
 		// Trazabilidad
 		DetalleTrazabilidad dettraz = new DetalleTrazabilidad();
@@ -114,21 +131,21 @@ public class PeticionRetrieveController {
 		pdf.setIndExito("S");
 		pdf.setCodError("0");
 		pdf.setMsgError("OK");
-		pdf.setRutaURLDestinoPDF("https//buckets-amazon/PDF/sinistrosvida/");
+		pdf.setRutaURLDestinoPDF("https//buckets-amazon/PDF/sinistrosvida/archivo.pdf");
 		// ======TXT======
 		IndTXT_AlmcS3 txt = new IndTXT_AlmcS3();
 		txt.setIndS3TXT("S");
 		txt.setIndExito("S");
 		txt.setCodError("0");
 		txt.setMsgError("OK");
-		txt.setRutaURLDestinoTXT("https//buckets-amazon/TXT/sinistrosvida/");
+		txt.setRutaURLDestinoTXT("https//buckets-amazon/TXT/sinistrosvida/archivo.txt");
 		// ======HTML======
 		IndHTML_AlmcS3 html = new IndHTML_AlmcS3();
 		html.setIndS3HTML("S");
 		html.setIndExito("S");
 		html.setCodError("0");
 		html.setMsgError("OK");
-		html.setRutaURLDestinoHTML("https//buckets-amazon/HTML/sinistrosvida/");
+		html.setRutaURLDestinoHTML("https//buckets-amazon/HTML/sinistrosvida/archivo.html");
 		alms3.setIndPDF(pdf);
 		alms3.setIndTXT(txt);
 		alms3.setIndHTML(html);
@@ -142,21 +159,21 @@ public class PeticionRetrieveController {
 		pdf_fil.setIndExito("S");
 		pdf_fil.setCodError("0");
 		pdf_fil.setMsgError("OK");
-		pdf_fil.setObjectid("asfsdgdgds");
+		pdf_fil.setObjectid("2");
 		// ====TXT=====
 		indTXT_AlmcFilenet2 TXT_fil = new indTXT_AlmcFilenet2();
 		TXT_fil.setInfFilenetTXT("S");
 		TXT_fil.setIndExito("S");
 		TXT_fil.setCodError("0");
 		TXT_fil.setMsgError("OK");
-		TXT_fil.setObjectid("asfsdgdgds");
+		TXT_fil.setObjectid("2");
 		// =====HTML====
 		indHTML_AlmcFilenet3 html_fil = new indHTML_AlmcFilenet3();
 		html_fil.setInfFilenetHTML("S");
 		html_fil.setIndExito("S");
 		html_fil.setCodError("0");
 		html_fil.setMsgError("OK");
-		html_fil.setObjectid("asfsdgdgds");
+		html_fil.setObjectid("2");
 
 		filenet.setIndPDF(pdf_fil);
 		filenet.setIndTXT(TXT_fil);
@@ -174,7 +191,7 @@ public class PeticionRetrieveController {
 		// peticionVr.add(pr);
 		peti.setOrigen(org);
 		peti.setCabecera(cab);
-		peti.setNumOperacion("COD001");
+		peti.setNumOperacion("COD2130737757");
 		// peticionVr.add(peti);
 		return peti;
 	}

@@ -1,8 +1,6 @@
 
 package pe.soapros.generacionccm.beans;
 
-import java.util.ArrayList;
-
 import javax.validation.constraints.NotNull;
 
 public class Origen {

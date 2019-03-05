@@ -1,7 +1,6 @@
 package pe.soapros.generacionccm.beans;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 public class Solicitud {
     

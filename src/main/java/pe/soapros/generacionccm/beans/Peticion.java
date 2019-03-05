@@ -1,9 +1,5 @@
 package pe.soapros.generacionccm.beans;
 
-import java.util.List;
-
-import javax.validation.constraints.NotNull;
-
 public class Peticion  {
 
 	Origen origen;

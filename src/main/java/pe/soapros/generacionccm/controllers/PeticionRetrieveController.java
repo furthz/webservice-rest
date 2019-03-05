@@ -1,7 +1,5 @@
 package pe.soapros.generacionccm.controllers;
 
-import java.util.ArrayList;
-
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -35,7 +33,7 @@ public class PeticionRetrieveController {
 
 	
 
-	@RequestMapping(method = RequestMethod.GET, value = "/consultar/pedido")
+	@RequestMapping(method = RequestMethod.POST, value = "/consultar/pedido")
 
 	@ResponseBody
 	public Peticion getTodasPeticiones(@Valid @RequestBody Entrada_Peticion peticion) {

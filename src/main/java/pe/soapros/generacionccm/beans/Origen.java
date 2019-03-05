@@ -1,6 +1,8 @@
 
 package pe.soapros.generacionccm.beans;
 
+import java.util.ArrayList;
+
 import javax.validation.constraints.NotNull;
 
 public class Origen {
@@ -17,9 +19,7 @@ public class Origen {
 	@NotNull(message="usuario es obligatorio")
 	String usuario;
 	@NotNull(message="identificador1 es obligatorio")
-	String identificador1;
-	@NotNull(message="identificador2 es obligatorio")
-	String identificador2;
+	String identificador1[];
 
 	public String getSistema() {
 		return sistema;
@@ -61,20 +61,13 @@ public class Origen {
 		this.usuario = usuario;
 	}
 
-	public String getIdentificador1() {
+
+	public String[] getIdentificador1() {
 		return identificador1;
 	}
 
-	public void setIdentificador1(String identificador1) {
+	public void setIdentificador1(String[] identificador1) {
 		this.identificador1 = identificador1;
-	}
-
-	public String getIdentificador2() {
-		return identificador2;
-	}
-
-	public void setIdentificador2(String identificador2) {
-		this.identificador2 = identificador2;
 	}
 
 	public String getAmbiente() {

@@ -12,9 +12,10 @@ public class GeneracionCcmApplication extends SpringBootServletInitializer{
 		SpringApplication.run(GeneracionCcmApplication.class, args);
 	}
 	
+	
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 	   return application.sources(GeneracionCcmApplication.class);
 	}
-
+	
 }

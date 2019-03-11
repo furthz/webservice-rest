@@ -3,23 +3,36 @@ package pe.soapros.generacionccm.beans;
 
 import javax.validation.constraints.NotNull;
 
-public class Origen {
-	@NotNull(message="Sistema es obligatorio")
-	String sistema;
-	@NotNull(message="ambiente es obligatorio")
-	String ambiente;
-	@NotNull(message="proceso es obligatorio")
-	String proceso;
-	@NotNull(message="subproceso es obligatorio")
-	String subproceso;
-	@NotNull(message="fechadeEnvio es obligatorio")
-	String fechadeEnvio;
-	@NotNull(message="usuario es obligatorio")
-	String usuario;
-	@NotNull(message="identificador1 es obligatorio")
+/**
+ * Bean que contiene los datos de origen
+ * 
+ * @author raul.talledo@soapros.pe
+ *
+ */
 
-	String[] identificador;
-	
+public class Origen {
+
+	@NotNull(message = "Sistema es obligatorio")
+	private String sistema;
+
+	@NotNull(message = "ambiente es obligatorio")
+	private String ambiente;
+
+	@NotNull(message = "proceso es obligatorio")
+	private String proceso;
+
+	@NotNull(message = "subproceso es obligatorio")
+	private String subproceso;
+
+	@NotNull(message = "fechadeEnvio es obligatorio")
+	private String fechadeEnvio;
+
+	@NotNull(message = "usuario es obligatorio")
+	private String usuario;
+
+	@NotNull(message = "identificador es obligatorio")
+	private String[] identificador;
+
 	public String getSistema() {
 		return sistema;
 	}
@@ -68,12 +81,12 @@ public class Origen {
 		this.ambiente = ambiente;
 	}
 
-    public String[] getIdentificador() {
-        return identificador;
-    }
+	public String[] getIdentificador() {
+		return identificador;
+	}
 
-    public void setIdentificador(String[] identificador) {
-        this.identificador = identificador;
-    }
+	public void setIdentificador(String[] identificador) {
+		this.identificador = identificador;
+	}
 
 }

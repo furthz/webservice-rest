@@ -1,87 +1,105 @@
 package pe.soapros.generacionccm.beans;
 
+import javax.validation.Valid;
+
 public class CabeceraIN {
 
-    DetallePDFIN detallePDFINBean;
-    DetalleTXTIN detalleTXTINBean;
-    DetalleHTMLIN detalleHTMLINBean;
-    DetalleCorreoIN detalleCorreoINBean;
-    DetalleSMSIN detalleSMSINBean;
-    DetalleTrazabilidadCorreoIN DetalleTrazabilidadCorreoINBean;
-    DetalleServicioGenericoIN detalleServicioGenericoBean;
-    DetalleS3IN detalleS3Bean;
-    DetalleFilenetIN detalleFilenetBean;
+	@Valid
+	private DetallePDFIN detallePDF;
 
-    public DetallePDFIN getDetallePDFINBean() {
-        return detallePDFINBean;
-    }
+	@Valid
+	private DetalleTXTIN detalleTXT;
 
-    public void setDetallePDFINBean(DetallePDFIN detallePDFINBean) {
-        this.detallePDFINBean = detallePDFINBean;
-    }
+	@Valid
+	private DetalleHTMLIN detalleHTML;
 
-    public DetalleTXTIN getDetalleTXTINBean() {
-        return detalleTXTINBean;
-    }
+	@Valid
+	private DetalleCorreoIN detalleCorreo;
 
-    public void setDetalleTXTINBean(DetalleTXTIN detalleTXTINBean) {
-        this.detalleTXTINBean = detalleTXTINBean;
-    }
+	@Valid
+	private DetalleSMSIN detalleSMS;
 
-    public DetalleHTMLIN getDetalleHTMLINBean() {
-        return detalleHTMLINBean;
-    }
+	@Valid
+	private DetalleTrazabilidadCorreoIN detalleTrazabilidadCorreo;
 
-    public void setDetalleHTMLINBean(DetalleHTMLIN detalleHTMLINBean) {
-        this.detalleHTMLINBean = detalleHTMLINBean;
-    }
+	@Valid
+	private DetalleServicioGenericoIN detalleServicioGenerico;
 
-    public DetalleCorreoIN getDetalleCorreoINBean() {
-        return detalleCorreoINBean;
-    }
+	@Valid
+	private DetalleS3IN detalleS3;
 
-    public void setDetalleCorreoINBean(DetalleCorreoIN detalleCorreoINBean) {
-        this.detalleCorreoINBean = detalleCorreoINBean;
-    }
+	private DetalleFilenetIN detalleFilenet;
 
-    public DetalleSMSIN getDetalleSMSINBean() {
-        return detalleSMSINBean;
-    }
+	public DetallePDFIN getDetallePDF() {
+		return detallePDF;
+	}
 
-    public void setDetalleSMSINBean(DetalleSMSIN detalleSMSINBean) {
-        this.detalleSMSINBean = detalleSMSINBean;
-    }
+	public void setDetallePDF(DetallePDFIN detallePDF) {
+		this.detallePDF = detallePDF;
+	}
 
-    public DetalleTrazabilidadCorreoIN getDetalleTrazabilidadCorreoINBean() {
-        return DetalleTrazabilidadCorreoINBean;
-    }
+	public DetalleTXTIN getDetalleTXT() {
+		return detalleTXT;
+	}
 
-    public void setDetalleTrazabilidadCorreoINBean(DetalleTrazabilidadCorreoIN DetalleTrazabilidadCorreoINBean) {
-        this.DetalleTrazabilidadCorreoINBean = DetalleTrazabilidadCorreoINBean;
-    }
+	public void setDetalleTXT(DetalleTXTIN detalleTXT) {
+		this.detalleTXT = detalleTXT;
+	}
 
-    public DetalleServicioGenericoIN getDetalleServicioGenericoBean() {
-        return detalleServicioGenericoBean;
-    }
+	public DetalleHTMLIN getDetalleHTML() {
+		return detalleHTML;
+	}
 
-    public void setDetalleServicioGenericoBean(DetalleServicioGenericoIN detalleServicioGenericoBean) {
-        this.detalleServicioGenericoBean = detalleServicioGenericoBean;
-    }
+	public void setDetalleHTML(DetalleHTMLIN detalleHTML) {
+		this.detalleHTML = detalleHTML;
+	}
 
-    public DetalleS3IN getDetalleS3Bean() {
-        return detalleS3Bean;
-    }
+	public DetalleCorreoIN getDetalleCorreo() {
+		return detalleCorreo;
+	}
 
-    public void setDetalleS3Bean(DetalleS3IN detalleS3Bean) {
-        this.detalleS3Bean = detalleS3Bean;
-    }
+	public void setDetalleCorreo(DetalleCorreoIN detalleCorreo) {
+		this.detalleCorreo = detalleCorreo;
+	}
 
-    public DetalleFilenetIN getDetalleFilenetBean() {
-        return detalleFilenetBean;
-    }
+	public DetalleSMSIN getDetalleSMS() {
+		return detalleSMS;
+	}
 
-    public void setDetalleFilenetBean(DetalleFilenetIN detalleFilenetBean) {
-        this.detalleFilenetBean = detalleFilenetBean;
-    }
+	public void setDetalleSMS(DetalleSMSIN detalleSMS) {
+		this.detalleSMS = detalleSMS;
+	}
+
+	public DetalleServicioGenericoIN getDetalleServicioGenerico() {
+		return detalleServicioGenerico;
+	}
+
+	public void setDetalleServicioGenerico(DetalleServicioGenericoIN detalleServicioGenerico) {
+		this.detalleServicioGenerico = detalleServicioGenerico;
+	}
+
+	public DetalleS3IN getDetalleS3() {
+		return detalleS3;
+	}
+
+	public void setDetalleS3(DetalleS3IN detalleS3) {
+		this.detalleS3 = detalleS3;
+	}
+
+	public DetalleFilenetIN getDetalleFilenet() {
+		return detalleFilenet;
+	}
+
+	public void setDetalleFilenet(DetalleFilenetIN detalleFilenet) {
+		this.detalleFilenet = detalleFilenet;
+	}
+
+	public DetalleTrazabilidadCorreoIN getDetalleTrazabilidadCorreo() {
+		return detalleTrazabilidadCorreo;
+	}
+
+	public void setDetalleTrazabilidadCorreo(DetalleTrazabilidadCorreoIN detalleTrazabilidadCorreo) {
+		this.detalleTrazabilidadCorreo = detalleTrazabilidadCorreo;
+	}
 
 }

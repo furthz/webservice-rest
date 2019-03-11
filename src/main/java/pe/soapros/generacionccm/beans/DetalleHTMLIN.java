@@ -1,43 +1,54 @@
 package pe.soapros.generacionccm.beans;
 
-public class DetalleHTMLIN
-{
-    String indHTML;
-    String codigoPlantilla;
-    String nombreDocumento;
-    String indGuardado;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-    public String getIndHTML() {
-        return indHTML;
-    }
+public class DetalleHTMLIN {
 
-    public void setIndHTML(String indHTML) {
-        this.indHTML = indHTML;
-    }
+	@NotNull(message = "detalleHTML: Identificador de HTML es obligatorio")
+	@Size(min = 1, max = 1, message = "detalleHTML: El tamaño del indicador de HTML es sólo de un caracter")
+	private String indHTML;
 
-    public String getCodigoPlantilla() {
-        return codigoPlantilla;
-    }
+	//@NotNull(message = "detalleHTML: El código de plantilla es obligatorio")
+	@Size(min = 0, max = 100, message = "detalleHTML: El tamaño del código de plantilla es como máximo es de 100")
+	private String codigoPlantilla;
 
-    public void setCodigoPlantilla(String codigoPlantilla) {
-        this.codigoPlantilla = codigoPlantilla;
-    }
+	private String nombreDocumento;
 
-    public String getNombreDocumento() {
-        return nombreDocumento;
-    }
+	//@NotNull(message = "detalleHTML: Identificador de guardado es obligatorio")
+	@Size(min = 0, max = 1, message = "detalleHTML: El tamaño del indicador de guardado es sólo de un caracter")
+	private String indGuardado;
 
-    public void setNombreDocumento(String nombreDocumento) {
-        this.nombreDocumento = nombreDocumento;
-    }
+	public String getIndHTML() {
+		return indHTML;
+	}
 
-    public String getIndGuardado() {
-        return indGuardado;
-    }
+	public void setIndHTML(String indHTML) {
+		this.indHTML = indHTML;
+	}
 
-    public void setIndGuardado(String indGuardado) {
-        this.indGuardado = indGuardado;
-    }
-    
-    
+	public String getCodigoPlantilla() {
+		return codigoPlantilla;
+	}
+
+	public void setCodigoPlantilla(String codigoPlantilla) {
+		this.codigoPlantilla = codigoPlantilla;
+	}
+
+	public String getNombreDocumento() {
+		return nombreDocumento;
+	}
+
+	public void setNombreDocumento(String nombreDocumento) {
+		this.nombreDocumento = nombreDocumento;
+	}
+
+	public String getIndGuardado() {
+		return indGuardado;
+	}
+
+	public void setIndGuardado(String indGuardado) {
+		this.indGuardado = indGuardado;
+	}
+
 }

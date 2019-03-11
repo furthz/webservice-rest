@@ -1,25 +1,45 @@
 
 package pe.soapros.generacionccm.beans;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class DetalleSMSIN {
-    String indSMS;
-    String dataSource;
 
-    public String getIndSMS() {
-        return indSMS;
-    }
+	@NotNull(message = "detalleSMS: Identificador de SMS es obligatorio")
+	@Size(min = 1, max = 1, message = "detalleSMS: El tamaño del indentificador SMS es sólo de un caracter")
+	private String indSMS;
 
-    public void setIndSMS(String indSMS) {
-        this.indSMS = indSMS;
-    }
+	//@NotNull(message = "detalleSMS: Datasource es obligatorio")
+	@Size(min = 1, max = 100, message = "detalleSMS: El tamaño del datasource no puede superar los 100 caracteres")
+	private String dataSource;
 
-    public String getDataSource() {
-        return dataSource;
-    }
+	//@NotEmpty(message = "detalleSMS: Los destinatarios no pueden ser vacíos")
+	private String[] destinatario;
 
-    public void setDataSource(String dataSource) {
-        this.dataSource = dataSource;
-    }
-    
-    
+	public String getIndSMS() {
+		return indSMS;
+	}
+
+	public void setIndSMS(String indSMS) {
+		this.indSMS = indSMS;
+	}
+
+	public String getDataSource() {
+		return dataSource;
+	}
+
+	public void setDataSource(String dataSource) {
+		this.dataSource = dataSource;
+	}
+
+	public String[] getDestinatario() {
+		return destinatario;
+	}
+
+	public void setDestinatario(String[] destinatario) {
+		this.destinatario = destinatario;
+	}
+
 }

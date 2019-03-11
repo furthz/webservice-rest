@@ -1,34 +1,48 @@
 
 package pe.soapros.generacionccm.beans;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class DetalleS3IN {
-    IndPDFINDetalleS3 indPDFInDetalleS3Bean;
-    IndTXTINDetalleS3 indTXTInDetalleS3Bean; 
-    IndHTMLINDetalleS3 indHTMLInDetalleS3Bean;
+	
+	//@NotNull(message = "detalleS3: Identificador de PDF en S3 es obligatorio")
+	//@Size(min = 1, max = 1, message = "detalleS3: El tamaño del identificador PDF en S3 es sólo de un caracter")
+    private IndPDFINDetalleS3 indPDF;
+	
+	//@NotNull(message = "detalleS3: Identificador de TXT en S3 es obligatorio")
+	//@Size(min = 0, max = 1, message = "detalleS3: El tamaño del identificador TXT en S3 es sólo de un caracter")
+    private IndTXTINDetalleS3 indTXT;
+    
+	//@NotNull(message = "detalleS3: Identificador de HTML en S3 es obligatorio")
+	//@Size(min = 0, max = 1, message = "detalleS3: El tamaño del identificador HTML en S3 es sólo de un caracter")
+    private IndHTMLINDetalleS3 indHTML;
 
-    public IndPDFINDetalleS3 getIndPDFInDetalleS3Bean() {
-        return indPDFInDetalleS3Bean;
-    }
+	public IndPDFINDetalleS3 getIndPDF() {
+		return indPDF;
+	}
 
-    public void setIndPDFInDetalleS3Bean(IndPDFINDetalleS3 indPDFInDetalleS3Bean) {
-        this.indPDFInDetalleS3Bean = indPDFInDetalleS3Bean;
-    }
+	public void setIndPDF(IndPDFINDetalleS3 indPDF) {
+		this.indPDF = indPDF;
+	}
 
-    public IndTXTINDetalleS3 getIndTXTInDetalleS3Bean() {
-        return indTXTInDetalleS3Bean;
-    }
+	public IndTXTINDetalleS3 getIndTXT() {
+		return indTXT;
+	}
 
-    public void setIndTXTInDetalleS3Bean(IndTXTINDetalleS3 indTXTInDetalleS3Bean) {
-        this.indTXTInDetalleS3Bean = indTXTInDetalleS3Bean;
-    }
+	public void setIndTXT(IndTXTINDetalleS3 indTXT) {
+		this.indTXT = indTXT;
+	}
 
-    public IndHTMLINDetalleS3 getIndHTMLInDetalleS3Bean() {
-        return indHTMLInDetalleS3Bean;
-    }
+	public IndHTMLINDetalleS3 getIndHTML() {
+		return indHTML;
+	}
 
-    public void setIndHTMLInDetalleS3Bean(IndHTMLINDetalleS3 indHTMLInDetalleS3Bean) {
-        this.indHTMLInDetalleS3Bean = indHTMLInDetalleS3Bean;
-    }
+	public void setIndHTML(IndHTMLINDetalleS3 indHTML) {
+		this.indHTML = indHTML;
+	}
+
+    
 
   
 }

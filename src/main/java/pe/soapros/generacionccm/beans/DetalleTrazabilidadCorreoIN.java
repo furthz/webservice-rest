@@ -1,24 +1,33 @@
 
 package pe.soapros.generacionccm.beans;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class DetalleTrazabilidadCorreoIN {
-   String indTrazabilidad;
-   String dataSource;
 
-    public String getIndTrazabilidad() {
-        return indTrazabilidad;
-    }
+	@NotNull(message = "Identificador de Trazabilidad es obligatorio")
+	@Size(min = 1, max = 1, message = "El tamaño es sólo de un caracter")
+	private String indTrazabilidad;
 
-    public void setIndTrazabilidad(String indTrazabilidad) {
-        this.indTrazabilidad = indTrazabilidad;
-    }
+	//@NotNull(message = "El datasource de trazabilidad es obligatorio")
+	@Size(min = 0, max = 100, message = "El tamaño del datasource no puede superar los 100 caracteres")
+	private String dataSource;
 
-    public String getDataSource() {
-        return dataSource;
-    }
+	public String getIndTrazabilidad() {
+		return indTrazabilidad;
+	}
 
-    public void setDataSource(String dataSource) {
-        this.dataSource = dataSource;
-    }
-    
+	public void setIndTrazabilidad(String indTrazabilidad) {
+		this.indTrazabilidad = indTrazabilidad;
+	}
+
+	public String getDataSource() {
+		return dataSource;
+	}
+
+	public void setDataSource(String dataSource) {
+		this.dataSource = dataSource;
+	}
+
 }

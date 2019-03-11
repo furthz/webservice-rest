@@ -2,7 +2,7 @@ package pe.soapros.generacionccm.beans;
 
 class IndHTMLINDetalleS3 {
     String indS3HTML;
-    String metadata;
+    //String metadata;
     String rutaURLDestinoHTML;
 
     public String getIndS3HTML() {
@@ -12,7 +12,7 @@ class IndHTMLINDetalleS3 {
     public void setIndS3HTML(String indS3HTML) {
         this.indS3HTML = indS3HTML;
     }
-
+    /*
     public String getMetadata() {
         return metadata;
     }
@@ -20,7 +20,7 @@ class IndHTMLINDetalleS3 {
     public void setMetadata(String metadata) {
         this.metadata = metadata;
     }
-
+*/
     public String getRutaURLDestinoHTML() {
         return rutaURLDestinoHTML;
     }

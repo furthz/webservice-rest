@@ -1,7 +1,7 @@
 package pe.soapros.generacionccm.beans;
 class IndTXTINDetalleS3 {
     String indS3TXT;
-    String metadata;
+    //String metadata;
     String rutaURLDestinoTXT;
 
     public String getIndS3TXT() {
@@ -12,6 +12,7 @@ class IndTXTINDetalleS3 {
         this.indS3TXT = indS3TXT;
     }
 
+    /*
     public String getMetadata() {
         return metadata;
     }
@@ -19,7 +20,7 @@ class IndTXTINDetalleS3 {
     public void setMetadata(String metadata) {
         this.metadata = metadata;
     }
-
+	*/
     public String getRutaURLDestinoTXT() {
         return rutaURLDestinoTXT;
     }

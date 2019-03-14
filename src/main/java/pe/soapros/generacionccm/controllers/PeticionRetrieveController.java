@@ -22,7 +22,7 @@ import pe.soapros.generacionccm.beans.IndHTML_AlmcS3;
 import pe.soapros.generacionccm.beans.IndPDF_AlmcS3;
 import pe.soapros.generacionccm.beans.IndTXT_AlmcS3;
 import pe.soapros.generacionccm.beans.Origen;
-import pe.soapros.generacionccm.beans.Peticion;
+import pe.soapros.generacionccm.beans.PeticionOUT;
 import pe.soapros.generacionccm.beans.detalleHTML;
 import pe.soapros.generacionccm.beans.indHTML_AlmcFilenet3;
 import pe.soapros.generacionccm.beans.indPDF_AlmcFilenet;
@@ -36,11 +36,11 @@ public class PeticionRetrieveController {
 	@RequestMapping(method = RequestMethod.POST, value = "/consultar/pedido")
 
 	@ResponseBody
-	public Peticion getTodasPeticiones(@Valid @RequestBody Entrada_Peticion peticion) {
+	public PeticionOUT getTodasPeticiones(@Valid @RequestBody Entrada_Peticion peticion) {
   
 		//peticionVr = new ArrayList<Peticion>();
 		Origen org = new Origen();
-		Peticion peti = new Peticion();
+		PeticionOUT peti = new PeticionOUT();
 		Cabecera cab = new Cabecera();
 		
 		// ============Origen==========================

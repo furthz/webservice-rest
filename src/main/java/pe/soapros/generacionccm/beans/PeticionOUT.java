@@ -1,6 +1,6 @@
 package pe.soapros.generacionccm.beans;
 
-public class Peticion  {
+public class PeticionOUT  {
 
 	Origen origen;
 	Cabecera cabecera;

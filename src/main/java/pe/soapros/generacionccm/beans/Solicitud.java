@@ -10,6 +10,9 @@ public class Solicitud {
 	@Valid
 	private CabeceraIN cabecera;
 
+	
+	private String jsonData;
+	
 	public Origen getOrigen() {
 		return origen;
 	}
@@ -25,13 +28,22 @@ public class Solicitud {
 	public void setCabecera(CabeceraIN cabecera) {
 		this.cabecera = cabecera;
 	}
+	
+	
+
+	public String getJsonData() {
+		return jsonData;
+	}
+
+	public void setJsonData(String jsonData) {
+		this.jsonData = jsonData;
+	}
 
 	@Override
 	public String toString() {
-		return "Solicitud [origen=" + origen + ", cabecera=" + cabecera + ", getOrigen()=" + getOrigen()
-				+ ", getCabecera()=" + getCabecera() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+		return "Solicitud [origen=" + origen + ", cabecera=" + cabecera + ", jsonData=" + jsonData + "]";
 	}
 
+	
 	
 }

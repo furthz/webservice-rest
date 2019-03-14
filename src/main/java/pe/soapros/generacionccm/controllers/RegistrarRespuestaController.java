@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import pe.soapros.generacionccm.beans.Respuesta;
 import pe.soapros.generacionccm.beans.Solicitud;
+import pe.soapros.generacionccm.business.CommunicationServerBO;
 import pe.soapros.generacionccm.business.PeticionBO;
 
 
@@ -31,6 +32,9 @@ public class RegistrarRespuestaController {
 	@Autowired
 	private PeticionBO peticionBO;
 
+	@Autowired
+	private CommunicationServerBO cs;
+	
 	@RequestMapping(method = RequestMethod.POST, value = "/registrar/pedido")
 	@ResponseBody
 	public Respuesta respuestaSolicitud(@Valid @RequestBody Solicitud solicitud) throws Exception {
@@ -38,6 +42,8 @@ public class RegistrarRespuestaController {
 
 		logger.debug(solicitud.toString());
 
+		cs.getToken();
+		
 		Respuesta respuesta = new Respuesta();
 		respuesta.setOrigen(solicitud.getOrigen());
 

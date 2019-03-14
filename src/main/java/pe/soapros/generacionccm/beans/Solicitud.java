@@ -26,4 +26,12 @@ public class Solicitud {
 		this.cabecera = cabecera;
 	}
 
+	@Override
+	public String toString() {
+		return "Solicitud [origen=" + origen + ", cabecera=" + cabecera + ", getOrigen()=" + getOrigen()
+				+ ", getCabecera()=" + getCabecera() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
+	}
+
+	
 }

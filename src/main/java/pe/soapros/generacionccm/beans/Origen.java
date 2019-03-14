@@ -1,6 +1,8 @@
 
 package pe.soapros.generacionccm.beans;
 
+import java.util.Arrays;
+
 import javax.validation.constraints.NotNull;
 
 /**
@@ -88,5 +90,18 @@ public class Origen {
 	public void setIdentificador(String[] identificador) {
 		this.identificador = identificador;
 	}
+
+	@Override
+	public String toString() {
+		return "Origen [sistema=" + sistema + ", ambiente=" + ambiente + ", proceso=" + proceso + ", subproceso="
+				+ subproceso + ", fechadeEnvio=" + fechadeEnvio + ", usuario=" + usuario + ", identificador="
+				+ Arrays.toString(identificador) + ", getSistema()=" + getSistema() + ", getProceso()=" + getProceso()
+				+ ", getSubproceso()=" + getSubproceso() + ", getFechadeEnvio()=" + getFechadeEnvio()
+				+ ", getUsuario()=" + getUsuario() + ", getAmbiente()=" + getAmbiente() + ", getIdentificador()="
+				+ Arrays.toString(getIdentificador()) + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
+	}
+	
+	
 
 }

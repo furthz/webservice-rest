@@ -19,12 +19,13 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @RestController
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
+	@SuppressWarnings("unchecked")
 	@ExceptionHandler(Exception.class)
 	public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
 		List<String> errores = new ArrayList<String>();
 		errores.add(request.getDescription(false).toString());
 
-		ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(), errores);
+		ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.toString(), errores);
 		return new ResponseEntity(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
@@ -37,6 +38,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 	 * HttpStatus.NOT_FOUND); }
 	 */
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {

@@ -1,30 +1,44 @@
 package pe.soapros.generacionccm.controllers;
 
+import java.util.Date;
 import java.util.Random;
-import java.util.logging.Logger;
 
 import javax.validation.Valid;
 
-import org.springframework.stereotype.Controller;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
 import pe.soapros.generacionccm.beans.Respuesta;
 import pe.soapros.generacionccm.beans.Solicitud;
+import pe.soapros.generacionccm.persistance.domain.Peticion;
+import pe.soapros.generacionccm.persistance.repository.PeticionRepository;
 
-@Controller
+
+@RestController
 public class RegistrarRespuestaController {
 
-	private final static Logger LOGGER = Logger.getLogger("RegistrarRespuestaController");
+	private static final Logger logger = LogManager.getLogger(RegistrarRespuestaController.class);
+
+	
+	@Autowired
+	private PeticionRepository peticionRepository;
+	
 
 	@RequestMapping(method = RequestMethod.POST, value = "/registrar/pedido")
-
 	
 	@ResponseBody
 	public Respuesta respuestaSolicitud(@Valid  @RequestBody Solicitud solicitud) {
-
-		Respuesta respuesta = new Respuesta();
+		logger.debug("ENTRO PETICION");
+		
+		logger.debug("Solicitud", solicitud.toString());
+		
+		Respuesta respuesta = new Respuesta();		
 		respuesta.setOrigen(solicitud.getOrigen());
 
 		Random rand = new Random();
@@ -39,6 +53,19 @@ public class RegistrarRespuestaController {
 			respuesta.setDocBase64(base64);
 		}
 		respuesta.setNumOperacion("COD" + rand1);
+		logger.debug("Respuesta", respuesta.toString());
+		
+		Peticion pet = new Peticion();
+		logger.debug("JPA", pet.toString());
+		
+		pet.setUsuCreacion("RTB");
+		pet.setFecCreacion(new Date());
+		pet.setNumOperacion(1000);
+		pet.setIndError(false);
+		
+		Peticion p = peticionRepository.save(pet);
+		logger.debug("JPA Guardado");
+		logger.debug(p.toString());
 		
 		return respuesta;
 

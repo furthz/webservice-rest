@@ -1,8 +1,6 @@
 package pe.soapros.generacionccm.beans;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -21,8 +19,8 @@ public class DetalleCorreoIN {
 	private String indAdjuntarTXT;
 
 	//@NotNull(message = "detalleCorreo: El origen del correo es obligatorio")
+	//@Email(message = "Email debería ser válido")
 	@Size(min = 0, max = 1000, message = "detalleCorreo: El tamaño del correo no debería ser mayor a 1000")
-	@Email(message = "Email debería ser válido")
 	private String de;
 
 	@Size(min = 0, max = 4000, message = "detalleCorreo: El tamaño del alias no debe ser mayor a 4000")

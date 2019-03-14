@@ -1,9 +1,6 @@
 
 package pe.soapros.generacionccm.beans;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 public class DetalleS3IN {
 	
 	//@NotNull(message = "detalleS3: Identificador de PDF en S3 es obligatorio")

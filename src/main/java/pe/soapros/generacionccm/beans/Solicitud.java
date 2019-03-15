@@ -11,7 +11,7 @@ public class Solicitud {
 	private CabeceraIN cabecera;
 
 	
-	private String jsonData;
+	//private String jsonData1;
 	
 	public Origen getOrigen() {
 		return origen;
@@ -31,17 +31,11 @@ public class Solicitud {
 	
 	
 
-	public String getJsonData() {
-		return jsonData;
-	}
-
-	public void setJsonData(String jsonData) {
-		this.jsonData = jsonData;
-	}
+	
 
 	@Override
 	public String toString() {
-		return "Solicitud [origen=" + origen + ", cabecera=" + cabecera + ", jsonData=" + jsonData + "]";
+		return "Solicitud [origen=" + origen + ", cabecera=" + cabecera + ", jsonData="  + "]";
 	}
 
 	

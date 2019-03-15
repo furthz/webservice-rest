@@ -18,12 +18,12 @@ import pe.soapros.generacionccm.beans.Origen;
 import pe.soapros.generacionccm.beans.Solicitud;
 
 @JsonComponent
-public class ValueDeserializer extends JsonDeserializer<Solicitud>{
+public class ValueDeserializer {//extends JsonDeserializer<Solicitud>{
 
 	private static final Logger logger = LogManager.getLogger(ValueDeserializer.class);
 	
 	
-	
+	/*
 	@Override
 	public Solicitud deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {
 		logger.debug("custom deserializar");
@@ -51,6 +51,7 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud>{
 			s.setJsonData(jsonData.asText());
 		}
 		
+		
 		if(jsonData == null) {
 			throw new JsonProcessingException("No hay JSON DATA") {
 				private void init() {
@@ -62,5 +63,5 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud>{
 		return s; 	
 	
 	}
-
+*/
 }

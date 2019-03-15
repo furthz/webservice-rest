@@ -1,18 +1,17 @@
 package pe.soapros.generacionccm.business;
 
-import java.util.Arrays;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import pe.soapros.generacionccm.beans.ResponseTokenCS;
 import pe.soapros.generacionccm.beans.UsuarioCS;
 
 @Component
@@ -23,27 +22,35 @@ public class CommunicationServerBO {
 	@Autowired
 	RestTemplate restTemplate;
 	
-	public String getToken() {
+	public ResponseTokenCS getToken() {
 		logger.debug("CommunicationServerBO - token");
-		
-		String token = "";		
-		
+				
 		HttpHeaders headers = new HttpHeaders();
-		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		headers.add("content-type", "application/json");
 		logger.debug("Cabcera");
 		
 		UsuarioCS usuario = new UsuarioCS();
-		usuario.setUser_name("");
-		usuario.setPassword("");
+		usuario.setUser_name("otadmin@otds.admin");
+		usuario.setPassword("Streamserve16!");
+
+		String data = "{  \"userName\": \"otadmin@otds.admin\"," + 
+				"  \"password\": \"Streamserve16!\"\r\n" + 
+				"}";		
+	
+		HttpEntity<String> entity = new HttpEntity<String>(data,headers);		
 		
-		HttpEntity<UsuarioCS> entity = new HttpEntity<UsuarioCS>(usuario,headers);
+		String url = "https://soaotxcsprueba:8443/otdsws/rest/authentication/credentials";
 		
-		String url = "https://soaotxcsprueba:8443/otdsws/api/index.html#/authentication/authenticateWithPassword";
-		
-		ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class );
+		ResponseEntity<ResponseTokenCS> response = restTemplate.postForEntity(url, entity, ResponseTokenCS.class); //(url, HttpMethod.POST, entity, String.class );
 		
 		logger.debug(response.toString());
 		
 		return response.getBody();
+	}
+		
+	
+	@Bean
+	public RestTemplate restTemplate() {
+	    return new RestTemplate();
 	}
 }

@@ -66,7 +66,7 @@ public class RegistrarRespuestaController {
 		respuesta.setNumOperacion("COD" + rand1);
 		logger.debug("Respuesta", respuesta.toString());
 
-		peticionBO.procesarPeticion(solicitud);
+		//peticionBO.procesarPeticion(solicitud);
 
 		return respuesta;
 

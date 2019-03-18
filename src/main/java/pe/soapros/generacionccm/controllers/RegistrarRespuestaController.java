@@ -1,6 +1,6 @@
 package pe.soapros.generacionccm.controllers;
 
-import java.util.Date;
+
 import java.util.Random;
 
 import javax.validation.Valid;
@@ -25,9 +25,6 @@ import pe.soapros.generacionccm.business.PeticionBO;
 public class RegistrarRespuestaController {
 
 	private static final Logger logger = LogManager.getLogger(RegistrarRespuestaController.class);
-
-	// @Autowired
-	// private PeticionRepository peticionRepository;
 
 	@Autowired
 	private PeticionBO peticionBO;
@@ -63,10 +60,12 @@ public class RegistrarRespuestaController {
 		} catch (Exception e) {
 			throw new Exception("No existia cabecera");
 		}
+		
+		this.peticionBO.procesarPeticion(solicitud);
+		
 		respuesta.setNumOperacion("COD" + rand1);
 		logger.debug("Respuesta", respuesta.toString());
 
-		//peticionBO.procesarPeticion(solicitud);
 
 		return respuesta;
 

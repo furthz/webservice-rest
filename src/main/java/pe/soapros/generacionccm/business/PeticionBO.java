@@ -31,7 +31,7 @@ public class PeticionBO {
 		pet.setNumOperacion(1000);
 		pet.setIndError(false);
 
-		//Peticion p = peticionRepository.save(pet);
+		Peticion p = peticionRepository.save(pet);
 		logger.debug("JPA Guardado");
 		//logger.debug(p.toString());
 		

@@ -48,7 +48,7 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud>{
 		s.setOrigen(orig);
 		
 		if(jsonData != null) {
-			s.setJsonData(jsonData.asText());
+			//s.setJsonData(jsonData.asText());
 		}
 		
 		

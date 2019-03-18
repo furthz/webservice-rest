@@ -53,7 +53,7 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud>{
 		
 		
 		if(jsonData == null) {
-			throw new JsonProcessingException("No hay JSON DATA") {
+			throw new JsonProcessingException("No hay JSON DATA PRUEBA") {
 				private void init() {
 					this.initCause(this);
 				}

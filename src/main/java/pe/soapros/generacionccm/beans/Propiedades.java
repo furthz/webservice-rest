@@ -8,6 +8,10 @@ public class Propiedades {
 
 	@Value("${ewsUrl}")
 	private String ewsUrl;
+	
+	@Value("${orquestador}")
+	private String servicio;
+	
 
 	public String getEwsUrl() {
 		return ewsUrl;
@@ -15,6 +19,14 @@ public class Propiedades {
 
 	public void setEwsUrl(String ewsUrl) {
 		this.ewsUrl = ewsUrl;
+	}
+
+	public String getServicio() {
+		return servicio;
+	}
+
+	public void setServicio(String servicio) {
+		this.servicio = servicio;
 	}
 	
 	

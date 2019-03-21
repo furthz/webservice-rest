@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import pe.soapros.generacionccm.beans.Propiedades;
 import pe.soapros.generacionccm.beans.ResponseTokenCS;
 import pe.soapros.generacionccm.beans.Respuesta;
 import pe.soapros.generacionccm.beans.Solicitud;
@@ -23,6 +24,9 @@ public class CommunicationServerBO {
 	
 	@Autowired
 	RestTemplate restTemplate;
+	
+	@Autowired
+	Propiedades propiedades;
 	
 	public ResponseTokenCS getToken() {
 		logger.debug("CommunicationServerBO - token");
@@ -59,7 +63,7 @@ public class CommunicationServerBO {
 		
 		HttpEntity<Solicitud> entity = new HttpEntity<Solicitud>(solicitud,headers);
 		
-		String url = "http://192.168.1.227:3000/api/v1/peticion";
+		String url = propiedades.getServicio();//"http://192.168.1.227:3000/api/v1/peticion";
 		
 		ResponseEntity<Respuesta> response = restTemplate.postForEntity(url, entity, Respuesta.class); //(url, HttpMethod.POST, entity, String.class );
 		

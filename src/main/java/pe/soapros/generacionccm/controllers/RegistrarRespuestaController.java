@@ -50,7 +50,8 @@ public class RegistrarRespuestaController {
 
 		respuesta = cs.callOrquestador(solicitud);
 		respuesta.setOrigen(solicitud.getOrigen());
-
+		
+		this.peticionBO.procesarPeticion(respuesta, solicitud);
 	
 		try {
 			// verificar si llamar a EWS
@@ -59,20 +60,23 @@ public class RegistrarRespuestaController {
 				
 				
 				byte[] valor = ews.callEWS(solicitud);
-				//respuesta.setDocBase64(valor.toString());
+				if(valor != null && valor.length > 0)
+				{
+					respuesta.setDocBase64(valor.toString());
+				}
 				
 				logger.debug("ews");
 				logger.debug(valor);
 			}
 
 		} catch (Exception e) {
-			throw new Exception("No existia cabecera");
+			throw new Exception(e);
 		}
 		
 		logger.debug("probando...");
 		logger.debug(solicitud);
 		
-		this.peticionBO.procesarPeticion(respuesta);
+		
 		
 		//respuesta.setNumOperacion("COD" + rand1);
 		logger.debug("Respuesta", respuesta.toString());

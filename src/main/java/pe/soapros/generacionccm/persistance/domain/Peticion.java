@@ -38,7 +38,7 @@ public class Peticion implements Serializable{
 	private Date fecModif;
 	
 	@Column(name = "NUMOPERACION")
-	private long numOperacion;
+	private String numOperacion;
 	
 	@Column(name = "INDERROR")
 	private boolean indError;
@@ -83,11 +83,11 @@ public class Peticion implements Serializable{
 		this.fecModif = fecModif;
 	}
 
-	public long getNumOperacion() {
+	public String getNumOperacion() {
 		return numOperacion;
 	}
 
-	public void setNumOperacion(long numOperacion) {
+	public void setNumOperacion(String numOperacion) {
 		this.numOperacion = numOperacion;
 	}
 

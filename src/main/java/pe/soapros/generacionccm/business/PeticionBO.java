@@ -20,7 +20,7 @@ public class PeticionBO {
 	@Autowired
 	private PeticionRepository peticionRepository;
 	
-	public Respuesta procesarPeticion(Solicitud solicitud) {
+	public Respuesta procesarPeticion(Respuesta solicitud) {
 		Respuesta rpta = null;
 		
 		Peticion pet = new Peticion();
@@ -28,7 +28,7 @@ public class PeticionBO {
 
 		pet.setUsuCreacion(solicitud.getOrigen().getUsuario());
 		pet.setFecCreacion(new Date());
-		pet.setNumOperacion(1000);
+		pet.setNumOperacion(solicitud.getNumOperacion());
 		pet.setIndError(false);
 
 		Peticion p = peticionRepository.save(pet);

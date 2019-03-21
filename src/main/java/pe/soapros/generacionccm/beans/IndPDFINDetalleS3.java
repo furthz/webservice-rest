@@ -1,17 +1,19 @@
 package pe.soapros.generacionccm.beans;
 
 public class IndPDFINDetalleS3 {
-    private String indPDF;
-    //private Gson metadata;
+	
+    private String indS3PDF;
+
     private String rutaURLDestinoPDF;
     
-	public String getIndPDF() {
-		return indPDF;
-	}
-	public void setIndPDF(String indPDF) {
-		this.indPDF = indPDF;
-	}
+
 	
+	public String getIndS3PDF() {
+		return indS3PDF;
+	}
+	public void setIndS3PDF(String indS3PDF) {
+		this.indS3PDF = indS3PDF;
+	}
 	public String getRutaURLDestinoPDF() {
 		return rutaURLDestinoPDF;
 	}

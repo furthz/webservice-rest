@@ -3,7 +3,7 @@ package pe.soapros.generacionccm.beans;
 public class Respuesta {
     Origen origen;
     String numOperacion;
-    String docBase64;
+    byte[] docBase64;
 
 
     public Origen getOrigen() {
@@ -22,11 +22,13 @@ public class Respuesta {
         this.numOperacion = numOperacion;
     }
 
-    public String getDocBase64() {
-        return docBase64;
-    }
+	public byte[] getDocBase64() {
+		return docBase64;
+	}
 
-    public void setDocBase64(String pdf) {
-        this.docBase64 = pdf;
-    } 
+	public void setDocBase64(byte[] docBase64) {
+		this.docBase64 = docBase64;
+	}
+
+   
 }

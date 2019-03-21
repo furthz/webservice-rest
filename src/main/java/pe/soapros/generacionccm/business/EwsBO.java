@@ -1,6 +1,5 @@
 package pe.soapros.generacionccm.business;
 
-import org.apache.commons.codec.binary.Base64;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
@@ -27,26 +26,36 @@ public class EwsBO {
 		
 		String jsonInput = mapper.writeValueAsString(solicitud);
 		logger.debug("jsonInput" + jsonInput);
-		
-		byte[] bytesEncoded = Base64.encodeBase64(jsonInput.getBytes());
-		logger.debug("Bytes: " + bytesEncoded);
-		
+
 
 		EngineService test = new EngineService();
+		
 		EngineWebService test1 = test.getEngineServicePort();
-
+		logger.debug("Puerto: " + test.getEngineServicePort().toString());
+		
 		EwsComposeRequest ewsComposeRequest = new EwsComposeRequest();
 
 		DriverFile value = new DriverFile();
-		value.setDriver(bytesEncoded);
-		value.setFileName(solicitud.getCabecera().getDetallePDF().getNombreDocumento());
+		value.setDriver(jsonInput.getBytes());
+		value.setFileName("dd:input");
+		logger.debug("Driver: " + value.toString());
+		
 
+		logger.debug("PUB: " + solicitud.getCabecera().getDetallePDF().getCodigoPlantilla() + ".pub");
+		
 		ewsComposeRequest.setDriver(value);
 		ewsComposeRequest.setPubFile(solicitud.getCabecera().getDetallePDF().getCodigoPlantilla() + ".pub");
-
+		
+		
 		EwsComposeResponse response = test1.compose(ewsComposeRequest);
 		logger.debug("Response:" + response.getStatusMessage());
 		
-		return response.getEngineMessage();
+		byte[] pdf = null;
+		
+		if((response != null) && (response.getFiles().get(0) != null)) {
+			pdf = response.getFiles().get(0).getFileOutput();
+		}
+		
+		return pdf;
 	}
 }

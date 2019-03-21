@@ -1,6 +1,7 @@
 package pe.soapros.generacionccm.controllers;
 
 
+import java.nio.charset.StandardCharsets;
 import java.util.Random;
 
 import javax.validation.Valid;
@@ -62,7 +63,7 @@ public class RegistrarRespuestaController {
 				byte[] valor = ews.callEWS(solicitud);
 				if(valor != null && valor.length > 0)
 				{
-					respuesta.setDocBase64(valor.toString());
+					respuesta.setDocBase64(valor);
 				}
 				
 				logger.debug("ews");

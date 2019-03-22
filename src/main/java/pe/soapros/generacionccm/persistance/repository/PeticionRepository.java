@@ -17,6 +17,6 @@ public interface PeticionRepository extends JpaRepository<Peticion, Long>{
 	@SuppressWarnings("unchecked")
 	Peticion save(Peticion pet);
 	
-	@Query("SELECT d FROM Peticion p, Detalle d WHERE p.idPeticion = d.idPeticion AND p.numOperacion = (:operacion) ORDER BY d.fecCreacion ")
+	@Query("SELECT d FROM Peticion p, Detalle d WHERE p.idPeticion = d.idPeticion AND p.numOperacion = (:operacion) ORDER BY d.idDetalle ")
 	List<Detalle> detallesByOperacion(@Param("operacion") String operacion);
 }

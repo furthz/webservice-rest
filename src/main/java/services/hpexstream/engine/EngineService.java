@@ -28,7 +28,7 @@ public class EngineService extends Service {
     static {
         URL url = null;
         try {
-            url = new URL("file:/" + Paths.get("").toAbsolutePath() + "/src/main/wsdl/EngineService.wsdl");
+            url = new URL("http://192.168.1.227:8080/EngineService/EngineService?wsdl");
         } catch (MalformedURLException e) {
             java.util.logging.Logger.getLogger(EngineService.class.getName())
                 .log(java.util.logging.Level.INFO, 

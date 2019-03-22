@@ -15,6 +15,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "CCM_DETALLE")
@@ -36,12 +38,14 @@ public class Detalle implements Serializable{
 	@Column(name = "USUCREACION")
 	private String usuCreacion;
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "FECCREACION")
 	private Date fecCreacion;
 	
 	@Column(name = "USUMODIF")
 	private String usuModif;
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "FECMODIF")
 	private Date fecModif;
 	

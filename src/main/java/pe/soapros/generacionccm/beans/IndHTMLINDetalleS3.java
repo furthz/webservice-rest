@@ -1,6 +1,6 @@
 package pe.soapros.generacionccm.beans;
 
-class IndHTMLINDetalleS3 {
+public class IndHTMLINDetalleS3 {
     String indS3HTML;
     //String metadata;
     String rutaURLDestinoHTML;

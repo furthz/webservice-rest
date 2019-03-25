@@ -1,7 +1,7 @@
 
 package pe.soapros.generacionccm.beans;
 
-class IndTXTFilenetIN {
+public class IndTXTFilenetIN {
     String indFilenetTXT;
     PropiedadesFilenetTXT PropiedadesFilenetPDFBean;
     ContentStreamFilenetTXT contentStreamFilenetPDFBean;

@@ -1,6 +1,6 @@
 package pe.soapros.generacionccm.beans;
 
-class IndPDFFilenetIN {
+public class IndPDFFilenetIN {
     
     String indFilenetPDF;
     PropiedadesFilenetPDF PropiedadesFilenetPDFBean;

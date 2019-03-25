@@ -1,6 +1,6 @@
 package pe.soapros.generacionccm.beans;
 
-class IndHTMLFilenetIN {
+public class IndHTMLFilenetIN {
     String indFilenetHTML;
     PropiedadesFilenetHTML PropiedadesFilenetHTMLBean;
     ContentStreamFilenetHTML contentStreamFilenetHTMLBean;

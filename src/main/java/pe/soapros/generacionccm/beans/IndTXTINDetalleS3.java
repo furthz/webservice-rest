@@ -1,5 +1,5 @@
 package pe.soapros.generacionccm.beans;
-class IndTXTINDetalleS3 {
+public class IndTXTINDetalleS3 {
     String indS3TXT;
     //String metadata;
     String rutaURLDestinoTXT;

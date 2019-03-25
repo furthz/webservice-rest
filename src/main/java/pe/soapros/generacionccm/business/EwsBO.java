@@ -2,6 +2,8 @@ package pe.soapros.generacionccm.business;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Marker;
+import org.apache.logging.log4j.MarkerManager;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -19,43 +21,43 @@ import services.hpexstream.engine.EwsComposeResponse;
 public class EwsBO {
 
 	private static final Logger logger = LogManager.getLogger(EwsBO.class);
+	private static final Marker ADMIN_USER = MarkerManager.getMarker("ADMIN");
 
 	public byte[] callEWS(Solicitud solicitud) throws JsonProcessingException, EngineServiceException_Exception {
-		
-		ObjectMapper mapper = new ObjectMapper();
-		
-		String jsonInput = mapper.writeValueAsString(solicitud);
-		logger.debug("jsonInput" + jsonInput);
 
+		logger.debug(ADMIN_USER, "callEWS", solicitud);
+
+		ObjectMapper mapper = new ObjectMapper();
+
+		String jsonInput = mapper.writeValueAsString(solicitud);
+		logger.debug(ADMIN_USER, "JSON Input", jsonInput);
 
 		EngineService test = new EngineService();
-		
+
 		EngineWebService test1 = test.getEngineServicePort();
-		logger.debug("Puerto: " + test.getEngineServicePort().toString());
-		
+		logger.debug(ADMIN_USER, "EngineWebService", test1);
+
 		EwsComposeRequest ewsComposeRequest = new EwsComposeRequest();
 
 		DriverFile value = new DriverFile();
 		value.setDriver(jsonInput.getBytes());
 		value.setFileName("dd:input");
-		logger.debug("Driver: " + value.toString());
-		
+		logger.debug(ADMIN_USER, "Driver", value);
 
 		logger.debug("PUB: " + solicitud.getCabecera().getDetallePDF().getCodigoPlantilla() + ".pub");
-		
+
 		ewsComposeRequest.setDriver(value);
 		ewsComposeRequest.setPubFile(solicitud.getCabecera().getDetallePDF().getCodigoPlantilla() + ".pub");
-		
-		
+
 		EwsComposeResponse response = test1.compose(ewsComposeRequest);
 		logger.debug("Response:" + response.getStatusMessage());
-		
+
 		byte[] pdf = null;
-		
-		if((response != null) && (response.getFiles().get(0) != null)) {
+
+		if ((response != null) && (response.getFiles().get(0) != null)) {
 			pdf = response.getFiles().get(0).getFileOutput();
 		}
-		
+
 		return pdf;
 	}
 }

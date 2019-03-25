@@ -12,6 +12,6 @@ public interface SistemaRepository extends JpaRepository<Sistema, Long>{
 	@Query("SELECT s FROM Sistema s WHERE s.nombre = (:nombre)")
 	Sistema getByNombre(@Param("nombre") String nombre);
 	
-	@Query("SELECT d FROM Sistema s, Documento d WHERE s.idSistema = d.idSistema AND s.idSistema = (:idSistema) AND d.codigo = (:codigo)")
-	Documento getDocumentoSistemaByPlantilla(@Param("idSistema") long idSistema, @Param("codigo") String codigo);
+	@Query("SELECT d FROM Sistema s, Documento d WHERE s.idSistema = d.idSistema AND s.nombre = (:sistema) AND d.codigo = (:codigo)")
+	Documento getDocumentoSistemaByPlantilla(@Param("sistema") String idSistema, @Param("codigo") String codigo);
 }

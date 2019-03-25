@@ -16,6 +16,7 @@
 		    <PatternLayout>
 		        <Pattern>${LOG_PATTERN}</Pattern>
 		    </PatternLayout>
+		    <MarkerFilter marker="ADMIN" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
 		    <Policies>
 		        <SizeBasedTriggeringPolicy size="10MB" />
 		    </Policies>

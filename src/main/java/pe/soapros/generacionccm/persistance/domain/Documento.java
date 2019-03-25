@@ -117,6 +117,14 @@ public class Documento {
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
+
+	@Override
+	public String toString() {
+		return "Documento [idDocumento=" + idDocumento + ", idSistema=" + idSistema + ", usuCreacion=" + usuCreacion
+				+ ", fecCreacion=" + fecCreacion + ", usuModif=" + usuModif + ", fecModif=" + fecModif + ", codigo="
+				+ codigo + ", nombre=" + nombre + ", indActivo=" + indActivo + "]";
+	}
+	
 	
 	
 }

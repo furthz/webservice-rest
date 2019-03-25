@@ -25,24 +25,24 @@ public class EwsBO {
 
 	public byte[] callEWS(Solicitud solicitud) throws JsonProcessingException, EngineServiceException_Exception {
 
-		logger.debug(ADMIN_USER, "callEWS", solicitud);
+		logger.debug(ADMIN_USER, "callEWS " + solicitud.toString());
 
 		ObjectMapper mapper = new ObjectMapper();
 
 		String jsonInput = mapper.writeValueAsString(solicitud);
-		logger.debug(ADMIN_USER, "JSON Input", jsonInput);
+		logger.debug(ADMIN_USER, "JSON Input: " + jsonInput);
 
 		EngineService test = new EngineService();
 
 		EngineWebService test1 = test.getEngineServicePort();
-		logger.debug(ADMIN_USER, "EngineWebService", test1);
+		logger.debug(ADMIN_USER, "EngineWebService: " + test1);
 
 		EwsComposeRequest ewsComposeRequest = new EwsComposeRequest();
 
 		DriverFile value = new DriverFile();
 		value.setDriver(jsonInput.getBytes());
 		value.setFileName("dd:input");
-		logger.debug(ADMIN_USER, "Driver", value);
+		logger.debug(ADMIN_USER, "Driver: " + value);
 
 		logger.debug("PUB: " + solicitud.getCabecera().getDetallePDF().getCodigoPlantilla() + ".pub");
 
@@ -54,8 +54,12 @@ public class EwsBO {
 
 		byte[] pdf = null;
 
-		if ((response != null) && (response.getFiles().get(0) != null)) {
-			pdf = response.getFiles().get(0).getFileOutput();
+		try {
+			if ((response != null) && (response.getFiles().get(0) != null)) {
+				pdf = response.getFiles().get(0).getFileOutput();
+			}
+		} catch (Exception e) {
+			logger.error(ADMIN_USER, "Response: " + e.getStackTrace());
 		}
 
 		return pdf;

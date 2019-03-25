@@ -95,6 +95,14 @@ public class Sistema {
 	public void setIndActivo(int indActivo) {
 		this.indActivo = indActivo;
 	}
+
+	@Override
+	public String toString() {
+		return "Sistema [idSistema=" + idSistema + ", usuCreacion=" + usuCreacion + ", fecCreacion=" + fecCreacion
+				+ ", usuModif=" + usuModif + ", fecModif=" + fecModif + ", nombre=" + nombre + ", indActivo="
+				+ indActivo + "]";
+	}
+	
 	
 	
 	

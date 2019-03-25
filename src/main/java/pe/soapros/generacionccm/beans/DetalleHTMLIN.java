@@ -51,4 +51,12 @@ public class DetalleHTMLIN {
 		this.indGuardado = indGuardado;
 	}
 
+	@Override
+	public String toString() {
+		return "DetalleHTMLIN [indHTML=" + indHTML + ", codigoPlantilla=" + codigoPlantilla + ", nombreDocumento="
+				+ nombreDocumento + ", indGuardado=" + indGuardado + "]";
+	}
+	
+	
+
 }

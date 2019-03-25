@@ -95,12 +95,9 @@ public class Origen {
 	public String toString() {
 		return "Origen [sistema=" + sistema + ", ambiente=" + ambiente + ", proceso=" + proceso + ", subproceso="
 				+ subproceso + ", fechadeEnvio=" + fechadeEnvio + ", usuario=" + usuario + ", identificador="
-				+ Arrays.toString(identificador) + ", getSistema()=" + getSistema() + ", getProceso()=" + getProceso()
-				+ ", getSubproceso()=" + getSubproceso() + ", getFechadeEnvio()=" + getFechadeEnvio()
-				+ ", getUsuario()=" + getUsuario() + ", getAmbiente()=" + getAmbiente() + ", getIdentificador()="
-				+ Arrays.toString(getIdentificador()) + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+				+ Arrays.toString(identificador) + "]";
 	}
+
 	
 	
 

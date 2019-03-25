@@ -1,9 +1,11 @@
 package pe.soapros.generacionccm.beans;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 public class IndHTMLFilenetIN {
     String indFilenetHTML;
-    PropiedadesFilenetHTML PropiedadesFilenetHTMLBean;
-    ContentStreamFilenetHTML contentStreamFilenetHTMLBean;
+    JsonNode propiedades;
+    JsonNode contentStream;
 
     public String getIndFilenetHTML() {
         return indFilenetHTML;
@@ -13,21 +15,29 @@ public class IndHTMLFilenetIN {
         this.indFilenetHTML = indFilenetHTML;
     }
 
-    public PropiedadesFilenetHTML getPropiedadesFilenetHTMLBean() {
-        return PropiedadesFilenetHTMLBean;
-    }
+	public JsonNode getPropiedades() {
+		return propiedades;
+	}
 
-    public void setPropiedadesFilenetHTMLBean(PropiedadesFilenetHTML PropiedadesFilenetHTMLBean) {
-        this.PropiedadesFilenetHTMLBean = PropiedadesFilenetHTMLBean;
-    }
+	public void setPropiedades(JsonNode propiedades) {
+		this.propiedades = propiedades;
+	}
 
-    public ContentStreamFilenetHTML getContentStreamFilenetHTMLBean() {
-        return contentStreamFilenetHTMLBean;
-    }
+	public JsonNode getContentStream() {
+		return contentStream;
+	}
 
-    public void setContentStreamFilenetHTMLBean(ContentStreamFilenetHTML contentStreamFilenetHTMLBean) {
-        this.contentStreamFilenetHTMLBean = contentStreamFilenetHTMLBean;
-    }
+	public void setContentStream(JsonNode contentStream) {
+		this.contentStream = contentStream;
+	}
+
+	@Override
+	public String toString() {
+		return "IndHTMLFilenetIN [indFilenetHTML=" + indFilenetHTML + ", propiedades=" + propiedades
+				+ ", contentStream=" + contentStream + "]";
+	}
+
+   
     
     
     

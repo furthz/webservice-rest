@@ -29,6 +29,10 @@ public class IndPDFINDetalleS3 {
 	}
 
     */
+	@Override
+	public String toString() {
+		return "IndPDFINDetalleS3 [indS3PDF=" + indS3PDF + ", rutaURLDestinoPDF=" + rutaURLDestinoPDF + "]";
+	}
     
     
 }

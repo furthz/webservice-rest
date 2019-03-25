@@ -63,4 +63,11 @@ public class DetallePDFIN {
 		this.indGuardado = indGuardado;
 	}
 
+	@Override
+	public String toString() {
+		return "DetallePDFIN [indPDF=" + indPDF + ", codigoPlantilla=" + codigoPlantilla + ", indVisualizacion="
+				+ indVisualizacion + ", nombreDocumento=" + nombreDocumento + ", indGuardado=" + indGuardado + "]";
+	}
+
+	
 }

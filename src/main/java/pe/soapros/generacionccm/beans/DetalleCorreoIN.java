@@ -1,5 +1,7 @@
 package pe.soapros.generacionccm.beans;
 
+import java.util.Arrays;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -130,5 +132,16 @@ public class DetalleCorreoIN {
 	public void setAdjuntosAdicionales(AdjuntosAdicionales[] adjuntosAdicionales) {
 		this.adjuntosAdicionales = adjuntosAdicionales;
 	}
+
+	@Override
+	public String toString() {
+		return "DetalleCorreoIN [indCorreo=" + indCorreo + ", indAdjuntarPDF=" + indAdjuntarPDF + ", indAdjuntarTXT="
+				+ indAdjuntarTXT + ", de=" + de + ", aliasDe=" + aliasDe + ", para=" + Arrays.toString(para)
+				+ ", conCopia=" + Arrays.toString(conCopia) + ", conCopiaOculta=" + Arrays.toString(conCopiaOculta)
+				+ ", asuntoPlantilla=" + asuntoPlantilla + ", asunto=" + asunto + ", adjuntosAdicionales="
+				+ Arrays.toString(adjuntosAdicionales) + "]";
+	}
+	
+	
 
 }

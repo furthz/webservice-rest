@@ -1,6 +1,8 @@
 
 package pe.soapros.generacionccm.beans;
 
+import java.util.Arrays;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -40,5 +42,13 @@ public class DetalleSMSIN {
 	public void setDestinatario(String[] destinatario) {
 		this.destinatario = destinatario;
 	}
+
+	@Override
+	public String toString() {
+		return "DetalleSMSIN [indSMS=" + indSMS + ", dataSource=" + dataSource + ", destinatario="
+				+ Arrays.toString(destinatario) + "]";
+	}
+	
+	
 
 }

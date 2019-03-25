@@ -3,32 +3,41 @@ package pe.soapros.generacionccm.beans;
 public class DetalleFilenetIN {
 
 	private String repositoryId;
-	private IndPDFFilenetIN indPDFFilenet;
-	private IndTXTFilenetIN indTXTFilenet;
-	private IndHTMLFilenetIN indHTMLFilenet;
+	private IndPDFFilenetIN indPDF;
+	private IndTXTFilenetIN indTXT;
+	private IndHTMLFilenetIN indHTML;
+	
+	
 	public String getRepositoryId() {
 		return repositoryId;
 	}
 	public void setRepositoryId(String repositoryId) {
 		this.repositoryId = repositoryId;
 	}
-	public IndPDFFilenetIN getIndPDFFilenet() {
-		return indPDFFilenet;
+	public IndPDFFilenetIN getIndPDF() {
+		return indPDF;
 	}
-	public void setIndPDFFilenet(IndPDFFilenetIN indPDFFilenet) {
-		this.indPDFFilenet = indPDFFilenet;
+	public void setIndPDF(IndPDFFilenetIN indPDF) {
+		this.indPDF = indPDF;
 	}
-	public IndTXTFilenetIN getIndTXTFilenet() {
-		return indTXTFilenet;
+	public IndTXTFilenetIN getIndTXT() {
+		return indTXT;
 	}
-	public void setIndTXTFilenet(IndTXTFilenetIN indTXTFilenet) {
-		this.indTXTFilenet = indTXTFilenet;
+	public void setIndTXT(IndTXTFilenetIN indTXT) {
+		this.indTXT = indTXT;
 	}
-	public IndHTMLFilenetIN getIndHTMLFilenet() {
-		return indHTMLFilenet;
+	public IndHTMLFilenetIN getIndHTML() {
+		return indHTML;
 	}
-	public void setIndHTMLFilenet(IndHTMLFilenetIN indHTMLFilenet) {
-		this.indHTMLFilenet = indHTMLFilenet;
+	public void setIndHTML(IndHTMLFilenetIN indHTML) {
+		this.indHTML = indHTML;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "DetalleFilenetIN [repositoryId=" + repositoryId + ", indPDF=" + indPDF + ", indTXT=" + indTXT
+				+ ", indHTML=" + indHTML + "]";
 	}
 
 	

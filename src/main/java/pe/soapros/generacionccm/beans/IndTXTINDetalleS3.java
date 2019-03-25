@@ -28,6 +28,12 @@ public class IndTXTINDetalleS3 {
     public void setRutaURLDestinoTXT(String rutaURLDestinoTXT) {
         this.rutaURLDestinoTXT = rutaURLDestinoTXT;
     }
+
+	@Override
+	public String toString() {
+		return "IndTXTINDetalleS3 [indS3TXT=" + indS3TXT + ", rutaURLDestinoTXT=" + rutaURLDestinoTXT + "]";
+	}
+    
     
     
 }

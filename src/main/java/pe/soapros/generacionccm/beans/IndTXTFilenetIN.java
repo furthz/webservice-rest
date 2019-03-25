@@ -1,10 +1,12 @@
 
 package pe.soapros.generacionccm.beans;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 public class IndTXTFilenetIN {
     String indFilenetTXT;
-    PropiedadesFilenetTXT PropiedadesFilenetPDFBean;
-    ContentStreamFilenetTXT contentStreamFilenetPDFBean;
+    JsonNode propiedades;
+    JsonNode contentStream;
 
     public String getIndFilenetTXT() {
         return indFilenetTXT;
@@ -14,21 +16,29 @@ public class IndTXTFilenetIN {
         this.indFilenetTXT = indFilenetTXT;
     }
 
-    public PropiedadesFilenetTXT getPropiedadesFilenetPDFBean() {
-        return PropiedadesFilenetPDFBean;
-    }
+	public JsonNode getPropiedades() {
+		return propiedades;
+	}
 
-    public void setPropiedadesFilenetPDFBean(PropiedadesFilenetTXT PropiedadesFilenetPDFBean) {
-        this.PropiedadesFilenetPDFBean = PropiedadesFilenetPDFBean;
-    }
+	public void setPropiedades(JsonNode propiedades) {
+		this.propiedades = propiedades;
+	}
 
-    public ContentStreamFilenetTXT getContentStreamFilenetPDFBean() {
-        return contentStreamFilenetPDFBean;
-    }
+	public JsonNode getContentStream() {
+		return contentStream;
+	}
 
-    public void setContentStreamFilenetPDFBean(ContentStreamFilenetTXT contentStreamFilenetPDFBean) {
-        this.contentStreamFilenetPDFBean = contentStreamFilenetPDFBean;
-    }
+	public void setContentStream(JsonNode contentStream) {
+		this.contentStream = contentStream;
+	}
+
+	@Override
+	public String toString() {
+		return "IndTXTFilenetIN [indFilenetTXT=" + indFilenetTXT + ", propiedades=" + propiedades + ", contentStream="
+				+ contentStream + "]";
+	}
+
+    
     
     
     

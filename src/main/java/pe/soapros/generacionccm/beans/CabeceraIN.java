@@ -102,4 +102,14 @@ public class CabeceraIN {
 		this.detalleTrazabilidadCorreo = detalleTrazabilidadCorreo;
 	}
 
+	@Override
+	public String toString() {
+		return "CabeceraIN [detallePDF=" + detallePDF + ", detalleTXT=" + detalleTXT + ", detalleHTML=" + detalleHTML
+				+ ", detalleCorreo=" + detalleCorreo + ", detalleSMS=" + detalleSMS + ", detalleTrazabilidadCorreo="
+				+ detalleTrazabilidadCorreo + ", detalleServicioGenerico=" + detalleServicioGenerico + ", detalleS3="
+				+ detalleS3 + ", detalleFilenet=" + detalleFilenet + "]";
+	}
+	
+	
+
 }

@@ -8,10 +8,11 @@
     <Appenders>
         <Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
             <PatternLayout pattern="${LOG_PATTERN}"/>
+            <!-- <param name="File" value="D:/logs/log4j2-WSUnico.log" /> --> 
         </Console>
 	          <!-- Rolling File Appender -->
-		<RollingFile name="FileAppender" fileName="logs/log4j2-demo.log" 
-		             filePattern="logs/log4j2-demo-%d{yyyy-MM-dd}-%i.log">
+		<RollingFile name="FileAppender" fileName="D:/logs/log4j2-WSUnico.log" 
+		             filePattern="D:/logs/log4j2-WSUnico-%d{yyyy-MM-dd}-%i.log">
 		    <PatternLayout>
 		        <Pattern>${LOG_PATTERN}</Pattern>
 		    </PatternLayout>

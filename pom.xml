@@ -32,12 +32,12 @@
 			<artifactId>spring-boot-starter</artifactId>
 			
 			<exclusions>
-				<!-- 
+				
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-logging</artifactId>
 				</exclusion>
-				 -->
+				 
 				<exclusion>
 					<groupId>org.yaml</groupId>
 					<artifactId>snakeyaml</artifactId>
@@ -72,12 +72,12 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 
 			<exclusions>
-				
+				<!-- 
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-tomcat</artifactId>
 				</exclusion>
-			 	    
+			 	  -->   
 			</exclusions>
 
 		</dependency>		     

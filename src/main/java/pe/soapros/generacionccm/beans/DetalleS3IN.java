@@ -39,6 +39,11 @@ public class DetalleS3IN {
 		this.indHTML = indHTML;
 	}
 
+	@Override
+	public String toString() {
+		return "DetalleS3IN [indPDF=" + indPDF + ", indTXT=" + indTXT + ", indHTML=" + indHTML + "]";
+	}
+
     
 
   

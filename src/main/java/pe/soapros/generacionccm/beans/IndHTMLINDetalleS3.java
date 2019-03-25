@@ -28,6 +28,11 @@ public class IndHTMLINDetalleS3 {
     public void setRutaURLDestinoHTML(String rutaURLDestinoHTML) {
         this.rutaURLDestinoHTML = rutaURLDestinoHTML;
     }
+
+	@Override
+	public String toString() {
+		return "IndHTMLINDetalleS3 [indS3HTML=" + indS3HTML + ", rutaURLDestinoHTML=" + rutaURLDestinoHTML + "]";
+	}
     
     
     

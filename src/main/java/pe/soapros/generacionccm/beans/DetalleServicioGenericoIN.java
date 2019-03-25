@@ -30,4 +30,11 @@ public class DetalleServicioGenericoIN {
 		this.dataSource = dataSource;
 	}
 
+	@Override
+	public String toString() {
+		return "DetalleServicioGenericoIN [indServicioGenerico=" + indServicioGenerico + ", dataSource=" + dataSource
+				+ "]";
+	}
+
+	
 }

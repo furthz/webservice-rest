@@ -51,4 +51,12 @@ public class DetalleTXTIN {
 		this.indGuardado = indGuardado;
 	}
 
+	@Override
+	public String toString() {
+		return "DetalleTXTIN [indTXT=" + indTXT + ", codigoPlantilla=" + codigoPlantilla + ", nombreDocumento="
+				+ nombreDocumento + ", indGuardado=" + indGuardado + "]";
+	}
+	
+	
+
 }

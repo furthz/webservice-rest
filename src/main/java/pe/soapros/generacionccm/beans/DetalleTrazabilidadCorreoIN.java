@@ -30,4 +30,11 @@ public class DetalleTrazabilidadCorreoIN {
 		this.dataSource = dataSource;
 	}
 
+	@Override
+	public String toString() {
+		return "DetalleTrazabilidadCorreoIN [indTrazabilidad=" + indTrazabilidad + ", dataSource=" + dataSource + "]";
+	}
+	
+	
+
 }

@@ -37,7 +37,8 @@
 </binding>
 <service name="EngineService">
 <port name="EngineServicePort" binding="tns:EngineServicePortBinding">
-<soap:address location="http://192.168.1.227:8080/EngineService/EngineService"/>
+<!-- Test de Rimac -->
+<soap:address location="http://172.23.2.115:8080/EngineService/EngineService"/>
 </port>
 </service>
 </definitions>

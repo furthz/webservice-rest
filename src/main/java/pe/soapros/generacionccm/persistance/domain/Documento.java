@@ -37,6 +37,9 @@ public class Documento {
 	@Column(name = "FECMODIF")
 	private Date fecModif;
 	
+	@Column(name = "CODIGO")
+	private String codigo;
+	
 	@Column(name = "NOMBRE")
 	private String nombre;
 	
@@ -105,6 +108,14 @@ public class Documento {
 
 	public void setIndActivo(int indActivo) {
 		this.indActivo = indActivo;
+	}
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 	
 	

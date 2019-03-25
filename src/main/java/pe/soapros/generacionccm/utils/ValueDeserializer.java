@@ -50,31 +50,32 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 		ObjectCodec oc = p.getCodec();
 		JsonNode node = oc.readTree(p);
 
-		JsonNode origen = null; // node.get("origen");
-		JsonNode cabecera = null; // node.get("cabecera");
-		JsonNode detallePdf = null; // cabecera.get("detallePDF");
-		JsonNode detalleTxt = null; // cabecera.get("detalleTXT");
-		JsonNode detalleHtml = null; // cabecera.get("detalleHTML");
-		JsonNode detalleCorreo = null; // cabecera.get("detalleCorreo");
-		JsonNode detalleSms = null; // cabecera.get("detalleSMS");
-		JsonNode detalleTrazCor = null; // cabecera.get("detalleTrazabilidadCorreo");
-		JsonNode detServGen = null; // cabecera.get("detalleServicioGenerico");
-		JsonNode detS3 = null; // cabecera.get("detalleS3");
-		JsonNode indPdf = null; // detS3.get("indPDF");
-		JsonNode indTxt = null; // detS3.get("indTXT");
-		JsonNode indHtml = null; // detS3.get("indHTML");
-		JsonNode detFNet = null; // cabecera.get("detalleFilenet");
-		JsonNode indPDFFilenet = null; // detFNet.get("indPDF");
-		JsonNode indTXTFilenet = null; // detFNet.get("indTXT");
-		JsonNode indHTMLFilenet = null; // detFNet.get("indHTML");
-		JsonNode PropiedadesFilenetHtml = null; // indHTMLFilenet.get("propiedades");
-		JsonNode contentStreamFilenetHtml = null; // indHTMLFilenet.get("contentStream");
+		JsonNode origen = null; 
+		JsonNode cabecera = null; 
+		JsonNode detallePdf = null; 
+		JsonNode detalleTxt = null; 
+		JsonNode detalleHtml = null; 
+		JsonNode detalleCorreo = null; 
+		JsonNode detalleSms = null; 
+		JsonNode detalleTrazCor = null; 
+		JsonNode detServGen = null; 
+		JsonNode detS3 = null; 
+		JsonNode indPdf = null;
+		JsonNode indTxt = null; 
+		JsonNode indHtml = null;
+		JsonNode detFNet = null;
+		JsonNode indPDFFilenet = null;
+		JsonNode indTXTFilenet = null; 
+		JsonNode indHTMLFilenet = null; 
+		JsonNode PropiedadesFilenetHtml = null; 
+		JsonNode contentStreamFilenetHtml = null; 
 
-		JsonNode PropiedadesFilenetTxt = null; // indTXTFilenet.get("propiedades");
-		JsonNode contentStreamFileneTxt = null; // indTXTFilenet.get("contentStream");
+		JsonNode PropiedadesFilenetTxt = null; 
+		JsonNode contentStreamFileneTxt = null;
 
-		JsonNode PropiedadesFilenetPdf = null; // indPDFFilenet.get("propiedades");
-		JsonNode contentStreamFilenetPdf = null; // indPDFFilenet.get("contentStream");
+		JsonNode PropiedadesFilenetPdf = null;
+		JsonNode contentStreamFilenetPdf = null; 
+		
 		JsonNode metaDataPdf = null;
 		JsonNode metaDataTxt = null;
 		JsonNode metaDataHtml = null;
@@ -84,7 +85,8 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 		JsonNode contStreamFileNetTXT = null;
 		JsonNode propFilenetHtml = null;
 		JsonNode contStreamFileNetHtml = null;
-		JsonNode para = null; // detalleCorreo.get("para");
+		
+		JsonNode para = null;
 		JsonNode destinatario = null; // detalleSms.get("destinatario");
 
 		JsonNode jsonData = null;
@@ -546,6 +548,7 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 			}
 
 			if (detalleCorreo.has("para")) {
+				para = detalleCorreo.get("para");
 				String[] corPara = new String[3];
 				int ind = 0;
 				for (JsonNode j : para) {
@@ -699,6 +702,7 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 				};
 			}
 			if (detalleSms.has("destinatario")) {
+				destinatario = detalleSms.get("destinatario");
 				String[] destinatarios = new String[3];
 				int ind = 0;
 				for (JsonNode j : destinatario) {

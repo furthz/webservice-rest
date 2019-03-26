@@ -2,14 +2,14 @@ package pe.soapros.generacionccm.beans;
 
 public class Cabecera {
 	
-	DetallePDF detallepdf;
-	DetalleTXT detalleTXT;
-	detalleHTML detalleHTML;
-	DetalleSMS EnvioSMS;
-	DetalleTrazabilidad detalleTrazabilidad;
-	DetalleServicio detalleServicio;
-	AlmacenamientoS3 almacenamientoS3;
-	AlmacenamientoFilenet almacenamientoFilenet;
+	private DetallePDF detallepdf;
+	private DetalleTXT detalleTXT;
+	private detalleHTML detalleHTML;
+	private DetalleSMS EnvioSMS;
+	private DetalleTrazabilidad detalleTrazabilidad;
+	private DetalleServicio detalleServicio;
+	private AlmacenamientoS3 almacenamientoS3;
+	private AlmacenamientoFilenet almacenamientoFilenet;
 	
 	
 	public AlmacenamientoS3 getAlmacenamientoS3() {
@@ -64,6 +64,13 @@ public class Cabecera {
 	}
 	
 	
-	
+	@Override
+	public String toString() {
+		return "Cabecera [detallepdf=" + detallepdf + ", detalleTXT=" + detalleTXT + ", detalleHTML=" + detalleHTML
+				+ ", EnvioSMS=" + EnvioSMS + ", detalleTrazabilidad=" + detalleTrazabilidad + ", detalleServicio="
+				+ detalleServicio + ", almacenamientoS3=" + almacenamientoS3 + ", almacenamientoFilenet="
+				+ almacenamientoFilenet + "]";
+	}
+		
 	
 }

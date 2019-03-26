@@ -1,10 +1,10 @@
 package pe.soapros.generacionccm.beans;
 
 public class DetalleSMS {
-	String indSMS ;
-	DetalleRespuesta[] numeroRespuesta ;
-
 	
+	private String indSMS ;
+	private DetalleRespuesta[] numeroRespuesta ;
+
 
 	public DetalleRespuesta[] getNumeroRespuesta() {
 		return numeroRespuesta;

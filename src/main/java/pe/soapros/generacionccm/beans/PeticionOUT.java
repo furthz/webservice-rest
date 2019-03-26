@@ -3,7 +3,7 @@ package pe.soapros.generacionccm.beans;
 public class PeticionOUT  {
 
 	Origen origen;
-	CabeceraIN cabecera;
+	Cabecera cabecera;
 	String numOperacion;
 	String estado;
 	
@@ -12,12 +12,12 @@ public class PeticionOUT  {
 	}
 	public void setOrigen(Origen origen) {
 		this.origen = origen;
-	}
-
-	public CabeceraIN getCabecera() {
+	}	
+	
+	public Cabecera getCabecera() {
 		return cabecera;
 	}
-	public void setCabecera(CabeceraIN cabecera) {
+	public void setCabecera(Cabecera cabecera) {
 		this.cabecera = cabecera;
 	}
 	public String getNumOperacion() {
@@ -31,6 +31,13 @@ public class PeticionOUT  {
 	}
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "PeticionOUT [origen=" + origen + ", cabecera=" + cabecera + ", numOperacion=" + numOperacion
+				+ ", estado=" + estado + "]";
 	}
 	
 

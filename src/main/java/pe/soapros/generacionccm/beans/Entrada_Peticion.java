@@ -3,10 +3,13 @@ package pe.soapros.generacionccm.beans;
 import javax.validation.constraints.NotNull;
 
 public class Entrada_Peticion {
+	
 	@NotNull(message="Origen es obligatorio")
 	Origen origen;
+	
 	@NotNull(message="Número de Operación es obligatorio")
 	String numOperacion;
+	
 	public Origen getOrigen() {
 		return origen;
 	}

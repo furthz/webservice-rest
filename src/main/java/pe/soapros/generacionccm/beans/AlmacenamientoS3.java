@@ -1,9 +1,9 @@
 package pe.soapros.generacionccm.beans;
 
 public class AlmacenamientoS3 {
-	IndPDF_AlmcS3 indPDF;
-	IndTXT_AlmcS3 indTXT;
-	IndHTML_AlmcS3 indHTML;
+	private IndPDF_AlmcS3 indPDF;
+	private IndTXT_AlmcS3 indTXT;
+	private IndHTML_AlmcS3 indHTML;
 
 	public IndPDF_AlmcS3 getIndPDF() {
 		return indPDF;

@@ -144,7 +144,7 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 		if (origen.has("sistema")) {
 
 			o.setSistema(origen.get("sistema").asText());
-			logger.debug(ADMIN_USER, origen.get("sistema").asText());
+			logger.debug(ADMIN_USER, "Sistema {}", origen.get("sistema").asText());
 
 		} else {
 
@@ -1463,7 +1463,7 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 			if (detalleTrazCor.has("dataSource")) {
 
 				detTraz.setDataSource(detalleTrazCor.get("dataSource").asText());
-				logger.debug(ADMIN_USER, "DATASOURCE", detalleTrazCor.get("dataSource").asText());
+				logger.debug(ADMIN_USER, "DATASOURCE {}", detalleTrazCor.get("dataSource").asText());
 
 			} else {
 
@@ -1532,7 +1532,7 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 		if (cabecera.has("detalleServicioGenerico")) {
 
 			detServGen = cabecera.get("detalleServicioGenerico");
-			logger.debug(ADMIN_USER, "DETALLESERVICIOGENERICO", cabecera.get("detalleServicioGenerico"));
+			logger.debug(ADMIN_USER, "DETALLESERVICIOGENERICO {}", cabecera.get("detalleServicioGenerico"));
 
 		} else {
 

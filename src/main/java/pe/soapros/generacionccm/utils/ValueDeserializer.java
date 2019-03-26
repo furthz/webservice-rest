@@ -51,7 +51,7 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 	public Solicitud deserialize(JsonParser p, DeserializationContext ctxt)
 			throws IOException, JsonProcessingException {
 
-		logger.debug(ADMIN_USER, "deserialize", p, ctxt);
+		logger.debug(ADMIN_USER, "deserialize parametros {} {} ", p, ctxt);
 
 		ObjectCodec oc = p.getCodec();
 		JsonNode node = oc.readTree(p);
@@ -125,7 +125,7 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 		if (node.has("origen")) {
 
 			origen = node.get("origen");
-			logger.debug(ADMIN_USER, "ORIGEN" + origen.toString());
+			logger.debug(ADMIN_USER, "ORIGEN {}", origen.toString());
 
 		} else {
 

@@ -25,32 +25,32 @@ public class EwsBO {
 
 	public byte[] callEWS(Solicitud solicitud) throws JsonProcessingException, EngineServiceException_Exception {
 
-		logger.debug(ADMIN_USER, "callEWS " + solicitud.toString());
+		logger.debug(ADMIN_USER, "callEWS parametro {}", solicitud);
 
 		ObjectMapper mapper = new ObjectMapper();
 
 		String jsonInput = mapper.writeValueAsString(solicitud);
-		logger.debug(ADMIN_USER, "JSON Input: " + jsonInput);
+		logger.debug(ADMIN_USER, "JSON Input: {}", jsonInput);
 
 		EngineService test = new EngineService();
 
 		EngineWebService test1 = test.getEngineServicePort();
-		logger.debug(ADMIN_USER, "EngineWebService: " + test1);
+		logger.debug(ADMIN_USER, "EngineWebService: {}", test1);
 
 		EwsComposeRequest ewsComposeRequest = new EwsComposeRequest();
 
 		DriverFile value = new DriverFile();
 		value.setDriver(jsonInput.getBytes());
 		value.setFileName("dd:input");
-		logger.debug(ADMIN_USER, "Driver: " + value);
+		logger.debug(ADMIN_USER, "Driver: {} ", value);
 
-		logger.debug("PUB: " + solicitud.getCabecera().getDetallePDF().getCodigoPlantilla() + ".pub");
+		logger.debug(ADMIN_USER, "PUB: " + solicitud.getCabecera().getDetallePDF().getCodigoPlantilla() + ".pub");
 
 		ewsComposeRequest.setDriver(value);
 		ewsComposeRequest.setPubFile(solicitud.getCabecera().getDetallePDF().getCodigoPlantilla() + ".pub");
 
 		EwsComposeResponse response = test1.compose(ewsComposeRequest);
-		logger.debug("Response:" + response.getStatusMessage());
+		logger.debug(ADMIN_USER, "Response: {}", response.getStatusMessage());
 
 		byte[] pdf = null;
 
@@ -59,7 +59,7 @@ public class EwsBO {
 				pdf = response.getFiles().get(0).getFileOutput();
 			}
 		} catch (Exception e) {
-			logger.error(ADMIN_USER, "Response: " + e.getStackTrace());
+			logger.error(ADMIN_USER, "Error: {}", e);
 		}
 
 		return pdf;

@@ -27,6 +27,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 	private static final Logger logger = LogManager.getLogger(CustomizedResponseEntityExceptionHandler.class);
 	private static final Marker ADMIN_USER = MarkerManager.getMarker("ADMIN");
 
+	
 	@ExceptionHandler(Exception.class)
 	public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
 		logger.debug(ADMIN_USER, "ResponseEntity", request, ex);

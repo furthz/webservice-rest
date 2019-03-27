@@ -21,7 +21,7 @@ public class SistemaBO {
 	private SistemaRepository sistemaRepository;
 	
 	public boolean validateSistema(String sistema) {
-		logger.debug(ADMIN_USER, "validateSistema: " + sistema);
+		logger.debug(ADMIN_USER, "validateSistema: {}",sistema);
 		
 		boolean rpta = false;
 		

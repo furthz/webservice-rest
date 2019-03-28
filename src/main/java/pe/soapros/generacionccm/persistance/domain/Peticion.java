@@ -13,7 +13,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "CCM_PETICION")
+@Table(name = "CCM_PETICION", schema ="OT_SUPPORT")
 public class Peticion implements Serializable{
 
 	private static final long serialVersionUID = 9043312177095494738L;

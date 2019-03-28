@@ -15,7 +15,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "CCM_DETALLE")
+@Table(name = "CCM_DETALLE", schema ="OT_SUPPORT")
 public class Detalle implements Serializable{
 
 	/**

@@ -73,27 +73,25 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 		JsonNode indPDFFilenet = null;
 		JsonNode indTXTFilenet = null;
 		JsonNode indHTMLFilenet = null;
+		
+		JsonNode PropiedadesFilenetPdf = null;
+		JsonNode contentStreamFilenetPdf = null;
+		
+		JsonNode PropiedadesFilenetTxt = null;
+		JsonNode contentStreamFileneTxt = null;
+		
 		JsonNode PropiedadesFilenetHtml = null;
 		JsonNode contentStreamFilenetHtml = null;
 
-		JsonNode PropiedadesFilenetTxt = null;
-		JsonNode contentStreamFileneTxt = null;
-
-		JsonNode PropiedadesFilenetPdf = null;
-		JsonNode contentStreamFilenetPdf = null;
 
 		JsonNode metaDataPdf = null;
 		JsonNode metaDataTxt = null;
 		JsonNode metaDataHtml = null;
-		JsonNode propFilenetPDF = null;
-		JsonNode contStreamFilenetPDF = null;
-		JsonNode propFilenetTXT = null;
-		JsonNode contStreamFileNetTXT = null;
-		JsonNode propFilenetHtml = null;
-		JsonNode contStreamFileNetHtml = null;
-
-		JsonNode para = null;
 		JsonNode destinatario = null;
+		JsonNode para = null;
+		JsonNode conCopia = null;
+		JsonNode conCopiaOculta = null;
+		JsonNode adjuntosadicionales = null;
 
 		JsonNode jsonData = null;
 
@@ -139,7 +137,7 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 			};
 
 		}
-
+		
 		// sistema
 		if (origen.has("sistema")) {
 
@@ -646,7 +644,7 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 
 				if (!validado) {
 					throw new JsonProcessingException(
-							"cabecera.detallePDF.codigoPlantilla Esta plantilla no está registrada para: " + o.getSistema()) {
+							"cabecera.detalleTXT.codigoPlantilla Esta plantilla no está registrada para: " + o.getSistema()) {
 
 						private static final long serialVersionUID = 1L;
 
@@ -656,8 +654,10 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 						}
 					};
 				}
-
-				detTxt.setCodigoPlantilla(detallePdf.get("codigoPlantilla").asText());
+				else {
+					detTxt.setCodigoPlantilla(detalleTxt.get("codigoPlantilla").asText());
+				}
+				
 			}
 
 			// 2: NOMBREDOCUMENTO
@@ -692,7 +692,7 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 				};
 
 			} else {
-				detTxt.setNombreDocumento(detallePdf.get("nombreDocumento").asText());
+				detTxt.setNombreDocumento(detalleTxt.get("nombreDocumento").asText());
 			}
 
 			// 3: INDGUARDADO
@@ -836,7 +836,7 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 
 				if (!validado) {
 					throw new JsonProcessingException(
-							"cabecera.detallePDF.codigoPlantilla Esta plantilla no está registrada para: " + o.getSistema()) {
+							"cabecera.detalleHTML.codigoPlantilla Esta plantilla no está registrada para: " + o.getSistema()) {
 
 						private static final long serialVersionUID = 1L;
 
@@ -1021,7 +1021,10 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 				};
 
 			}
-
+			
+			//System.out.print(detalleCorreo.get("de").asText());
+			//System.out.print(detCorreo.getDe());
+			
 			if (detCorreo.getDe().equals("") || detCorreo.getDe().equals(" ") || detCorreo.getDe().equals("null")) {
 				throw new JsonProcessingException("cabecera.detalleCorreo.de, No puede ser nulo ") {
 					/**
@@ -1034,18 +1037,37 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 						this.initCause(this);
 					}
 				};
-			} else {
-				detCorreo.setDe(detalleCorreo.get("de").asText());
-			}
+				} 
+			else {
+				String de = detCorreo.getDe();
+				System.err.print("DE CORREO"+de);
+				logger.debug(ADMIN_USER, de);
+				Pattern pattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
+						Pattern.CASE_INSENSITIVE);
+				Matcher matcher = pattern.matcher(de);
 
+				if (matcher.find()==false) {
+					throw new JsonProcessingException(
+							"cabecera.detalleCorreo.de, el correo es inválido") {
+						
+						private static final long serialVersionUID = 1L;
+
+						@SuppressWarnings("unused")
+						private void init() {
+							this.initCause(this);
+						}
+					};
+				}
+				else {detCorreo.setDe(detalleCorreo.get("de").asText());}
+				}
 			// 2: ALIAS
 			if (detalleCorreo.has("aliasDe")) {
 
 				detCorreo.setAliasDe(detalleCorreo.get("aliasDe").asText());
 				logger.debug(ADMIN_USER, "ALIAS", detalleCorreo.get("aliasDe").asText());
 
-			} else {
-
+			} 
+			else {
 				throw new JsonProcessingException("cabecera.detalleCorreo.aliasDe, La etiqueta no existe ") {
 					/**
 					 * 
@@ -1107,7 +1129,7 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 				};
 			}
 
-			if ((detCorreo.getPara().length == 0) && (detCorreo.getPara() != null)) {
+			if ((detCorreo.getPara()[0] == null) || (detCorreo.getPara() == null)) {
 				throw new JsonProcessingException("cabecera.detalleCorreo.para, No puede ser nulo ") {
 					/**
 					 * 
@@ -1239,15 +1261,84 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 			}
 
 			if (detalleCorreo.has("conCopia")) {
-				// FALTA
+				conCopia = detalleCorreo.get("conCopia");
+				logger.debug(ADMIN_USER, "CON COPIA", detalleCorreo.get("conCopia"));
+				String[] conCop = new String[5];
+				int ind = 0;
+				for (JsonNode j : conCopia) {
+
+					conCop[ind++] = j.asText();
+				}
+				detCorreo.setConCopia(conCop);
+
+			} else {
+
+				throw new JsonProcessingException("cabecera.detalleCorreo.conCopia, La etiqueta no existe ") {
+					/**
+					 * 
+					 */
+					private static final long serialVersionUID = 1L;
+
+					@SuppressWarnings("unused")
+					private void init() {
+						this.initCause(this);
+					}
+				};
 			}
 
 			if (detalleCorreo.has("conCopiaOculta")) {
-				// FALTA
+				conCopiaOculta = detalleCorreo.get("conCopiaOculta");
+				logger.debug(ADMIN_USER, "CON COPIA OCULTA", detalleCorreo.get("conCopiaOculta"));
+				String[] conCopOcul = new String[5];
+				int ind = 0;
+				for (JsonNode j : conCopiaOculta) {
+
+					conCopOcul[ind++] = j.asText();
+				}
+				detCorreo.setConCopiaOculta(conCopOcul);
+
+			} else {
+
+				throw new JsonProcessingException("cabecera.detalleCorreo.conCopiaOculta, La etiqueta no existe ") {
+					/**
+					 * 
+					 */
+					private static final long serialVersionUID = 1L;
+
+					@SuppressWarnings("unused")
+					private void init() {
+						this.initCause(this);
+					}
+				};
+				
 			}
 
 			if (detalleCorreo.has("adjuntosadicionales")) {
 				// FALTA
+				adjuntosadicionales = detalleCorreo.get("adjuntosadicionales");
+				logger.debug(ADMIN_USER, "ADJUNTO ADICIONAL", detalleCorreo.get("adjuntosadicionales"));
+				
+				String[] adjAdicional = new String[5];
+				int ind = 0;
+				for (JsonNode j : adjuntosadicionales) {
+
+					adjAdicional[ind++] = j.asText();
+				}
+				//detCorreo.setAdju(adjAdicional);
+
+			} else {
+
+				throw new JsonProcessingException("cabecera.detalleCorreo.adjuntosadicionales, La etiqueta no existe ") {
+					
+					 
+					private static final long serialVersionUID = 1L;
+
+					@SuppressWarnings("unused")
+					private void init() {
+						this.initCause(this);
+					}
+				};
+				
 			}
 
 			cab.setDetalleCorreo(detCorreo);
@@ -1390,7 +1481,19 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 					}
 				};
 			}
+			if (detSms.getDestinatario()[0]==null || detSms.getDestinatario()==null) {
+				throw new JsonProcessingException("cabecera.detalleSMS.destinatario, No puede ser nulo ") {
+					/**
+					 * 
+					 */
+					private static final long serialVersionUID = 1L;
 
+					@SuppressWarnings("unused")
+					private void init() {
+						this.initCause(this);
+					}
+				};
+			} 
 			cab.setDetalleSMS(detSms);
 
 		} else if (detSms.getIndSMS().equals("N")) {
@@ -1689,8 +1792,23 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 				}
 			};
 		}
-		// VALIDAMOS QUE INDS3PDF SEA = S
+		//VALIDAMOS QUE EL CAMPO DE LA ETIQUETA IndPDF SEA ="S", YA QUE DEPENDE SI ESTE CAMPO SI ES = S 
+		if(detPdf.getIndPDF().equals("N")) {
+			throw new JsonProcessingException("cabecera.detalleS3.indPDF.indS3PDF, No puede guardar documento que no existe") {
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
 
+				@SuppressWarnings("unused")
+				private void init() {
+					this.initCause(this);
+				}
+			};
+					}
+		
+		
+		// VALIDAMOS QUE INDS3PDF SEA = S
 		if (indPdfS3.getIndS3PDF() != null && indPdfS3.getIndS3PDF().equals("S")) {
 			// VALIDAMOS QUE LAS ETIQUETAS EXISTAN
 			if (indPdf.has("metadata")) {
@@ -1798,6 +1916,21 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 			};
 		}
 
+		//VALIDAMOS QUE EL CAMPO DE LA ETIQUETA indTXT SEA ="S", YA QUE DEPENDE SI ESTE CAMPO SI ES = S 
+				if(detTxt.getIndTXT().equals("N")) {
+					throw new JsonProcessingException("cabecera.detalleS3.indTXT.indS3TXT, No puede guardar documento que no existe") {
+						/**
+						 * 
+						 */
+						private static final long serialVersionUID = 1L;
+
+						@SuppressWarnings("unused")
+						private void init() {
+							this.initCause(this);
+						}
+					};
+							}
+				
 		// VALIDAMOS QUE INDTXT SEA = S
 		if (indTxtS3.getIndS3TXT() != null && indTxtS3.getIndS3TXT().equals("S")) {
 
@@ -1911,6 +2044,20 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 				}
 			};
 		}
+		//VALIDAMOS QUE EL CAMPO DE LA ETIQUETA indTXT SEA ="S", YA QUE DEPENDE SI ESTE CAMPO SI ES = S 
+		if(detHtml.getIndHTML().equals("N")) {
+			throw new JsonProcessingException("cabecera.detalleS3.indHTML.indS3HTML, No puede guardar documento que no existe") {
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				@SuppressWarnings("unused")
+				private void init() {
+					this.initCause(this);
+				}
+			};
+					}
 		// VALIDAMOS QUE INDHTML SEA = S
 		if (indHtmlS3.getIndS3HTML() != null && indHtmlS3.getIndS3HTML().equals("S")) {
 			// VALISAMOS QUE EXISTA LAS ETIQUETAS
@@ -1946,7 +2093,8 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 				};
 			}
 			// VALIDAR QUE LOS CAMPOS NO ESTEN VACIO
-			if (indHtmlS3.getRutaURLDestinoHTML().equals("")) {
+			String ruta=indHtmlS3.getRutaURLDestinoHTML();
+			if (ruta.equals("")|| ruta.equals("null")) {
 				throw new JsonProcessingException("cabecera.detalleS3.indHTML.rutaURLDestinoHTML, No puede ser nulo ") {
 					/**
 					 * 
@@ -2058,7 +2206,7 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 		if (fileNetPdf.getIndFilenetPDF() != null && fileNetPdf.getIndFilenetPDF().equals("S")) {
 			// VALIDAR QUE LAS ETIQUETAS EXITAN
 			if (indPDFFilenet.has("propiedades")) {
-				propFilenetPDF = indPDFFilenet.get("propiedades");
+				PropiedadesFilenetPdf = indPDFFilenet.get("propiedades");
 
 			} else {
 				throw new JsonProcessingException("detalleFilenet.indPDF.propiedades, La etiqueta no existe ") {
@@ -2074,7 +2222,7 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 				};
 			}
 			if (indPDFFilenet.has("contentStream")) {
-				contStreamFilenetPDF = indPDFFilenet.get("contentStream");
+				contentStreamFilenetPdf = indPDFFilenet.get("contentStream");
 			} else {
 				throw new JsonProcessingException("detalleFilenet.indPDF.contentStream, La etiqueta no existe ") {
 					/**
@@ -2089,7 +2237,8 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 				};
 			}
 			// VALIDAR QUE LOS CAMPOS NO ESTEN VACIOS
-			if (propFilenetPDF == null) {
+			PropiedadesFilenetPdf = indPDFFilenet.get("propiedades");
+			if (PropiedadesFilenetPdf == null || PropiedadesFilenetPdf.size()==0) {
 				throw new JsonProcessingException("cabecera.detalleFilenet.indPDF.propiedades, No puede ser nulo ") {
 					/**
 					 * 
@@ -2102,8 +2251,8 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 					}
 				};
 			}
-
-			if (contStreamFilenetPDF == null) {
+			contentStreamFilenetPdf = indPDFFilenet.get("contentStream");
+			if (contentStreamFilenetPdf == null || contentStreamFilenetPdf.size()==0) {
 				throw new JsonProcessingException("cabecera.detalleFilenet.indPDF.contentStream, No puede ser nulo ") {
 					/**
 					 * 
@@ -2175,7 +2324,7 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 		if (fileNetTxt.getIndFilenetTXT() != null && fileNetTxt.getIndFilenetTXT().equals("S")) {
 			// VALIDAR QUE EXISTA LAS ETIQUETAS
 			if (indTXTFilenet.has("propiedades")) {
-				propFilenetTXT = indTXTFilenet.get("propiedades");
+				PropiedadesFilenetTxt = indTXTFilenet.get("propiedades");
 			} else {
 				throw new JsonProcessingException("detalleFilenet.indTXT.propiedades, La etiqueta no existe ") {
 					/**
@@ -2191,7 +2340,7 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 			}
 
 			if (indTXTFilenet.has("contentStream")) {
-				contStreamFileNetTXT = indTXTFilenet.get("contentStream");
+				contentStreamFileneTxt = indTXTFilenet.get("contentStream");
 			} else {
 				throw new JsonProcessingException("detalleFilenet.indTXT.contentStream, La etiqueta no existe ") {
 					/**
@@ -2206,8 +2355,9 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 				};
 			}
 			// VALIDAR QUE EL CAMPO NO ESTE VACIO
-
-			if (propFilenetTXT == null) {
+			
+			PropiedadesFilenetTxt = indTXTFilenet.get("propiedades");
+			if (PropiedadesFilenetTxt == null || PropiedadesFilenetTxt.size()==0) {
 				throw new JsonProcessingException("cabecera.detalleFilenet.indTXT.propiedades, No puede ser nulo") {
 					/**
 					 * 
@@ -2220,7 +2370,8 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 					}
 				};
 			}
-			if (contStreamFileNetTXT == null) {
+			contentStreamFileneTxt = indTXTFilenet.get("contentStream");
+			if (contentStreamFileneTxt == null || contentStreamFileneTxt.size()==0) {
 				throw new JsonProcessingException("cabecera.detalleFilenet.indTXT.contentStream, No puede ser nulo") {
 					/**
 					 * 
@@ -2291,7 +2442,7 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 		if (fileNetHtml.getIndFilenetHTML() != null && fileNetHtml.getIndFilenetHTML().equals("S")) {
 			// VALIDAR QUE LAS ETIQUETAS EXISTAN
 			if (indHTMLFilenet.has("propiedades")) {
-				propFilenetHtml = indHTMLFilenet.get("propiedades");
+				PropiedadesFilenetHtml = indHTMLFilenet.get("propiedades");
 			} else {
 				throw new JsonProcessingException("detalleFilenet.indHTML.propiedades, La etiqueta no existe ") {
 					/**
@@ -2306,7 +2457,7 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 				};
 			}
 			if (indHTMLFilenet.has("contentStream")) {
-				contStreamFileNetHtml = indHTMLFilenet.get("contentStream");
+				contentStreamFilenetHtml = indHTMLFilenet.get("contentStream");
 			} else {
 				throw new JsonProcessingException("detalleFilenet.indHTML.contentStream, La etiqueta no existe ") {
 					/**
@@ -2321,7 +2472,8 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 				};
 			}
 			// VALIDAR QUE LOS CAMPOS NO ESTEN VACIOS
-			if (propFilenetHtml == null) {
+			PropiedadesFilenetHtml = indHTMLFilenet.get("propiedades");
+			if (PropiedadesFilenetHtml == null || PropiedadesFilenetHtml.size()==0) {
 				throw new JsonProcessingException("cabecera.detalleFilenet.indHTML.propiedades, No puede ser nulo") {
 					/**
 					 * 
@@ -2334,7 +2486,8 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 					}
 				};
 			}
-			if (contStreamFileNetHtml == null) {
+			contentStreamFilenetHtml = indHTMLFilenet.get("contentStream");
+			if (contentStreamFilenetHtml == null || contentStreamFilenetHtml.size()==0) {
 				throw new JsonProcessingException("cabecera.detalleFilenet.indHTML.contentStream, No puede ser nulo") {
 					/**
 					 * 
@@ -2393,6 +2546,7 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 
 		solicitudMod.setJsonData(jsonData);
 
+		
 		logger.debug(ADMIN_USER, solicitudMod);
 
 		return solicitudMod;

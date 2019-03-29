@@ -2,23 +2,18 @@ package pe.soapros.generacionccm.persistance.domain;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "CCM_PETICION")
+@Table(name = "CCM_PETICION", schema ="OT_SUPPORT")
 public class Peticion implements Serializable{
 
 	private static final long serialVersionUID = 9043312177095494738L;

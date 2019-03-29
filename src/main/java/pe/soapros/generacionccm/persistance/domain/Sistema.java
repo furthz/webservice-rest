@@ -12,7 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "CCM_SISTEMA")
+@Table(name = "CCM_SISTEMA", schema ="OT_SUPPORT")
 public class Sistema {
 
 	@Id

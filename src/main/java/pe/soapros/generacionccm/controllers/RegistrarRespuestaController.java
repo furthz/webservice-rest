@@ -37,17 +37,15 @@ public class RegistrarRespuestaController {
 	@RequestMapping(method = RequestMethod.POST, value = "/registrar/pedido")
 	@ResponseBody
 	public Respuesta respuestaSolicitud(@Valid @RequestBody Solicitud solicitud) throws Exception {
-		logger.debug(ADMIN_USER, "respuestaSolicitud");
-
-		logger.info(ADMIN_USER, solicitud.toString());
+		logger.debug(ADMIN_USER, "respuestaSolicitud parametro: {}", solicitud);
 
 		Respuesta respuesta = new Respuesta();
 
 		respuesta = cs.callOrquestador(solicitud);
-		logger.debug(ADMIN_USER, "Orquestador", respuesta);
+		logger.debug(ADMIN_USER, "Orquestador: {}", respuesta);
 
 		respuesta.setOrigen(solicitud.getOrigen());
-		logger.debug(ADMIN_USER, "Respuesta con Origen", respuesta);
+		logger.debug(ADMIN_USER, "Respuesta con Origen: {}", respuesta);
 
 		this.peticionBO.procesarPeticion(respuesta, solicitud);
 
@@ -58,7 +56,7 @@ public class RegistrarRespuestaController {
 			if ("S".equals(solicitud.getCabecera().getDetallePDF().getIndVisualizacion())) {
 
 				byte[] valor = ews.callEWS(solicitud);
-				logger.debug(ADMIN_USER, "Retorno EWS", valor);
+				logger.debug(ADMIN_USER, "Retorno EWS: {}", valor);
 
 				if (valor != null && valor.length > 0) {
 					respuesta.setDocBase64(valor);
@@ -67,7 +65,7 @@ public class RegistrarRespuestaController {
 			}
 
 		} catch (Exception e) {
-			logger.error(ADMIN_USER, "Error EWS", e);
+			logger.error(ADMIN_USER, "Error EWS {}", e);
 			throw new Exception(e);
 		}
 

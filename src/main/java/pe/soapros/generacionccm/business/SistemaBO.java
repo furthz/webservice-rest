@@ -21,7 +21,7 @@ public class SistemaBO {
 	private SistemaRepository sistemaRepository;
 	
 	public boolean validateSistema(String sistema) {
-		logger.debug(ADMIN_USER, "validateSistema: " + sistema);
+		logger.debug(ADMIN_USER, "validateSistema: {}",sistema);
 		
 		boolean rpta = false;
 		
@@ -37,12 +37,12 @@ public class SistemaBO {
 	}
 	
 	public boolean validatePlantilla(String sistema, String codigo) {
-		logger.debug(ADMIN_USER, "validatePlantilla " + sistema + " - " + codigo);
+		logger.debug(ADMIN_USER, "validatePlantilla Sistema: {} Codigo: {}",sistema, codigo);
 		
 		boolean rpta = false;
 		
 		Documento doc = sistemaRepository.getDocumentoSistemaByPlantilla(sistema, codigo);
-		
+		logger.debug(ADMIN_USER, "Documento recuperado {}", doc);
 		
 		if(doc != null) {
 			logger.debug(ADMIN_USER, "Validado");

@@ -60,7 +60,7 @@ public class PeticionBO {
 		pet.setFecCreacion(new Date());
 		pet.setNumOperacion(res.getNumOperacion());
 		pet.setIndError(false);
-		logger.debug(ADMIN_USER, "Peticion", pet);
+		logger.debug(ADMIN_USER, "Peticion: {}", pet);
 
 		Detalle det = new Detalle();
 		det.setUsuCreacion(res.getOrigen().getUsuario());
@@ -69,7 +69,7 @@ public class PeticionBO {
 
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonInput = mapper.writeValueAsString(sol);
-		logger.debug(ADMIN_USER, "JSON", jsonInput);
+		logger.debug(ADMIN_USER, "JSON: {}", jsonInput);
 
 		det.setInputJson(jsonInput);
 		det.setIndError(0);
@@ -78,7 +78,7 @@ public class PeticionBO {
 
 		det.setIdPeticion(p.getIdPeticion());
 
-		logger.debug(ADMIN_USER, "Detalle", det);
+		logger.debug(ADMIN_USER, "Detalle: {}", det);
 
 		detalleRepository.save(det);
 
@@ -90,10 +90,10 @@ public class PeticionBO {
 	public PeticionOUT consultarPeticion(Entrada_Peticion solicitud)
 			throws JsonParseException, JsonMappingException, IOException {
 
-		logger.debug(ADMIN_USER, "consultarPeticion: " + solicitud.toString());
+		logger.debug(ADMIN_USER, "consultarPeticion: {}", solicitud);
 
 		List<Detalle> detalles = this.peticionRepository.detallesByOperacion(solicitud.getNumOperacion());
-		logger.debug(ADMIN_USER, "Detalles:" + detalles.toString());
+		logger.debug(ADMIN_USER, "Detalles: {}", detalles.toString());
 
 		int tam = detalles.size();
 
@@ -105,16 +105,17 @@ public class PeticionBO {
 
 		}
 
-		logger.debug(ADMIN_USER, "Input Solicitado: " + hmap.get("Solicitado"));
+		logger.debug(ADMIN_USER, "Input Solicitado: {}", hmap.get("Solicitado"));
 
 		ObjectMapper mapper = new ObjectMapper();
 
 		Solicitud sol = mapper.readValue(hmap.get("Solicitado"), Solicitud.class);
-		logger.debug(ADMIN_USER, "JSON", sol);
+		logger.debug(ADMIN_USER, "JSON: {}", sol);
 
 		PeticionOUT respuesta = new PeticionOUT();
 
 		respuesta.setOrigen(sol.getOrigen());
+		logger.debug(ADMIN_USER, "ORIGEN: {}", sol.getOrigen());
 
 		Cabecera cabecera = new Cabecera();
 
@@ -123,10 +124,17 @@ public class PeticionBO {
 		detalleHTML detHTML = new detalleHTML();
 
 		detPDF.setIndPDF(sol.getCabecera().getDetallePDF().getIndPDF());
+		logger.debug(ADMIN_USER, "INDPDF: {}", sol.getCabecera().getDetallePDF().getIndPDF());
+
 		detTXT.setIndTXT(sol.getCabecera().getDetalleTXT().getIndTXT());
+		logger.debug(ADMIN_USER, "INDTXT: {}", sol.getCabecera().getDetalleTXT().getIndTXT());
+
 		detHTML.setIndHTML(sol.getCabecera().getDetalleHTML().getIndHTML());
+		logger.debug(ADMIN_USER, "INDHTML: {}", sol.getCabecera().getDetalleHTML().getIndHTML());
 
 		if (hmap.get("Documentos generados") != null) {
+
+			logger.debug(ADMIN_USER, "DOCUMENTOS GENERADOS");
 
 			detPDF.setIndExito("S");
 			detPDF.setCodError("0");
@@ -141,6 +149,8 @@ public class PeticionBO {
 			detHTML.setMsgError("OK");
 
 		} else {
+
+			logger.debug(ADMIN_USER, "DOCUMENTOS NO GENERADOS");
 
 			detPDF.setIndExito("N");
 			detPDF.setCodError("-1");
@@ -157,22 +167,40 @@ public class PeticionBO {
 		}
 
 		cabecera.setDetallepdf(detPDF);
+		logger.debug(ADMIN_USER, "DETPDF: {}", detPDF);
+
+		cabecera.setDetalleTXT(detTXT);
+		logger.debug(ADMIN_USER, "DETTXT: {}", detTXT);
+
+		cabecera.setDetalleHTML(detHTML);
+		logger.debug(ADMIN_USER, "DETHTML: {}", detHTML);
 
 		DetalleSMS detSMS = new DetalleSMS();
 
 		if (hmap.get("Envio SMS") != null) {
+
+			logger.debug(ADMIN_USER, "ENVIO SMS");
 			detSMS.setIndSMS("S");
+
 		} else {
+
+			logger.debug(ADMIN_USER, "ENVIO SMS NO");
 			detSMS.setIndSMS("N");
+
 		}
 
 		cabecera.setEnvioSMS(detSMS);
+		logger.debug(ADMIN_USER, "ENVIO SMS: {}", detSMS);
 
 		DetalleTrazabilidad detTraz = new DetalleTrazabilidad();
 
 		detTraz.setIndTrazabilidad(sol.getCabecera().getDetalleTrazabilidadCorreo().getIndTrazabilidad());
+		logger.debug(ADMIN_USER, "INDTRAZABILIDAD: {}",
+				sol.getCabecera().getDetalleTrazabilidadCorreo().getIndTrazabilidad());
 
 		if (hmap.get("Trazabilidad") != null) {
+
+			logger.debug(ADMIN_USER, "TRAZABILIDAD");
 
 			detTraz.setIndExito("S");
 			detTraz.setCodError("0");
@@ -181,6 +209,7 @@ public class PeticionBO {
 
 		} else {
 
+			logger.debug(ADMIN_USER, "NO TRAZABILIDAD");
 			detTraz.setIndExito("N");
 			detTraz.setCodError("-1");
 			detTraz.setMsgError("Error Trazabilidad");
@@ -193,9 +222,12 @@ public class PeticionBO {
 		DetalleServicio detServ = new DetalleServicio();
 
 		detServ.setIndServicio(sol.getCabecera().getDetalleServicioGenerico().getIndServicioGenerico());
+		logger.debug(ADMIN_USER, "IND SERVICIO: {}",
+				sol.getCabecera().getDetalleServicioGenerico().getIndServicioGenerico());
 
 		if (hmap.get("Servicio Generico") != null) {
 
+			logger.debug(ADMIN_USER, "SERVICIO GENERICO");
 			detServ.setIndExito("S");
 			detServ.setCodError("0");
 			detServ.setMsgError("");
@@ -203,6 +235,7 @@ public class PeticionBO {
 
 		} else {
 
+			logger.debug(ADMIN_USER, "NO SERVICIO GENERICO");
 			detServ.setIndExito("N");
 			detServ.setCodError("-1");
 			detServ.setMsgError("");
@@ -210,6 +243,7 @@ public class PeticionBO {
 		}
 
 		cabecera.setDetalleServicio(detServ);
+		logger.debug(ADMIN_USER, "DETSERV: {}", detServ);
 
 		AlmacenamientoS3 almS3 = new AlmacenamientoS3();
 
@@ -218,10 +252,17 @@ public class PeticionBO {
 		IndHTML_AlmcS3 htmlS3 = new IndHTML_AlmcS3();
 
 		pdfS3.setIndS3PDF(sol.getCabecera().getDetalleS3().getIndPDF().getIndS3PDF());
+		logger.debug(ADMIN_USER, "INDS3PDF", sol.getCabecera().getDetalleS3().getIndPDF().getIndS3PDF());
+
 		txtS3.setIndS3TXT(sol.getCabecera().getDetalleS3().getIndTXT().getIndS3TXT());
+		logger.debug(ADMIN_USER, "INDS3TXT: {}", sol.getCabecera().getDetalleS3().getIndTXT().getIndS3TXT());
+
 		htmlS3.setIndS3HTML(sol.getCabecera().getDetalleS3().getIndHTML().getIndS3HTML());
+		logger.debug(ADMIN_USER, "INDS3HTML: {}", sol.getCabecera().getDetalleS3().getIndHTML().getIndS3HTML());
 
 		if (hmap.get("Documentos Subidos S3") != null) {
+
+			logger.debug(ADMIN_USER, "DOCUMENTOS S3");
 
 			pdfS3.setIndExito("S");
 			pdfS3.setCodError("0");
@@ -249,6 +290,8 @@ public class PeticionBO {
 
 		} else {
 
+			logger.debug(ADMIN_USER, "NO DOCUMENTOS S3");
+
 			pdfS3.setIndExito("N");
 			pdfS3.setCodError("-1");
 			pdfS3.setMsgError("Error Subida S3");
@@ -264,17 +307,25 @@ public class PeticionBO {
 		}
 
 		almS3.setIndPDF(pdfS3);
+		logger.debug(ADMIN_USER, "INDPDFS3: {}", pdfS3);
+
 		almS3.setIndTXT(txtS3);
+		logger.debug(ADMIN_USER, "INDTXTS3: {}", txtS3);
+
 		almS3.setIndHTML(htmlS3);
+		logger.debug(ADMIN_USER, "INDHTMLS3: {}", htmlS3);
 
 		cabecera.setAlmacenamientoS3(almS3);
+		logger.debug(ADMIN_USER, "ALMACENAMIENTO S3", almS3);
 
 		respuesta.setCabecera(cabecera);
+		logger.debug(ADMIN_USER, "CABECERA: {}", cabecera);
+
 		respuesta.setNumOperacion(solicitud.getNumOperacion());
 
 		String estado = detalles.get(tam - 1).getNomFase();
 		respuesta.setEstado(estado);
-		logger.debug(ADMIN_USER, "Respuesta", respuesta);
+		logger.debug(ADMIN_USER, "Respuesta {}", respuesta);
 
 		return respuesta;
 	}

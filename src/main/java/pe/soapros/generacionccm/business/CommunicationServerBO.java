@@ -35,7 +35,7 @@ public class CommunicationServerBO {
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("content-type", "application/json");
-		logger.debug(ADMIN_USER, headers);
+		logger.debug(ADMIN_USER, "Headers: {}", headers);
 
 		UsuarioCS usuario = new UsuarioCS();
 		usuario.setUser_name("otadmin@otds.admin");
@@ -47,11 +47,7 @@ public class CommunicationServerBO {
 
 		String url = "https://soaotxcsprueba:8443/otdsws/rest/authentication/credentials";
 
-		ResponseEntity<ResponseTokenCS> response = restTemplate.postForEntity(url, entity, ResponseTokenCS.class); // (url,
-																													// HttpMethod.POST,
-																													// entity,
-																													// String.class
-																													// );
+		ResponseEntity<ResponseTokenCS> response = restTemplate.postForEntity(url, entity, ResponseTokenCS.class);
 
 		logger.debug(response.toString());
 
@@ -59,24 +55,20 @@ public class CommunicationServerBO {
 	}
 
 	public Respuesta callOrquestador(Solicitud solicitud) {
-		logger.debug(ADMIN_USER, "callOrquestador", solicitud);
+		logger.debug(ADMIN_USER, "callOrquestador parametro {}", solicitud);
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("content-type", "application/json");
-		logger.debug(ADMIN_USER, "Headers", headers);
+		logger.debug(ADMIN_USER, "Headers {}", headers);
 
 		HttpEntity<Solicitud> entity = new HttpEntity<Solicitud>(solicitud, headers);
-		logger.debug(ADMIN_USER, "Entity", entity);
+		logger.debug(ADMIN_USER, "Entity {}", entity);
 
-		String url = propiedades.getServicio();// "http://192.168.1.227:3000/api/v1/peticion";
-		logger.debug(ADMIN_USER, "URL", url);
+		String url = propiedades.getServicio();
+		logger.debug(ADMIN_USER, "URL {}", url);
 
-		ResponseEntity<Respuesta> response = restTemplate.postForEntity(url, entity, Respuesta.class); // (url,
-																										// HttpMethod.POST,
-																										// entity,
-																										// String.class
-																										// );
-		logger.debug(ADMIN_USER, "Respuesta", response);
+		ResponseEntity<Respuesta> response = restTemplate.postForEntity(url, entity, Respuesta.class);
+		logger.debug(ADMIN_USER, "Respuesta {}", response);
 
 		return response.getBody();
 	}

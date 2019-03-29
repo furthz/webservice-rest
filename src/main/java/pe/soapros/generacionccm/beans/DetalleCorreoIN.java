@@ -6,6 +6,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 public class DetalleCorreoIN {
 
 	@NotNull(message = "detalleCorreo: Identificador de Correo es obligatorio")
@@ -43,7 +45,7 @@ public class DetalleCorreoIN {
 	private String asunto;
 
 	@Valid
-	private AdjuntosAdicionales[] adjuntosAdicionales;
+	private JsonNode adjuntosAdicionales;
 
 	public String getIndCorreo() {
 		return indCorreo;
@@ -125,11 +127,11 @@ public class DetalleCorreoIN {
 		this.asunto = asunto;
 	}
 
-	public AdjuntosAdicionales[] getAdjuntosAdicionales() {
+	public JsonNode getAdjuntosAdicionales() {
 		return adjuntosAdicionales;
 	}
 
-	public void setAdjuntosAdicionales(AdjuntosAdicionales[] adjuntosAdicionales) {
+	public void setAdjuntosAdicionales(JsonNode adjuntosAdicionales) {
 		this.adjuntosAdicionales = adjuntosAdicionales;
 	}
 
@@ -139,8 +141,12 @@ public class DetalleCorreoIN {
 				+ indAdjuntarTXT + ", de=" + de + ", aliasDe=" + aliasDe + ", para=" + Arrays.toString(para)
 				+ ", conCopia=" + Arrays.toString(conCopia) + ", conCopiaOculta=" + Arrays.toString(conCopiaOculta)
 				+ ", asuntoPlantilla=" + asuntoPlantilla + ", asunto=" + asunto + ", adjuntosAdicionales="
-				+ Arrays.toString(adjuntosAdicionales) + "]";
+				+ adjuntosAdicionales + "]";
 	}
+
+
+	
+
 	
 	
 

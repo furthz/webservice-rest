@@ -5,7 +5,7 @@ public class PeticionOUT  {
 	Origen origen;
 	Cabecera cabecera;
 	String numOperacion;
-	String estado;
+	
 	
 	public Origen getOrigen() {
 		return origen;
@@ -26,18 +26,13 @@ public class PeticionOUT  {
 	public void setNumOperacion(String numOperacion) {
 		this.numOperacion = numOperacion;
 	}
-	public String getEstado() {
-		return estado;
-	}
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
+
 	
 	
 	@Override
 	public String toString() {
 		return "PeticionOUT [origen=" + origen + ", cabecera=" + cabecera + ", numOperacion=" + numOperacion
-				+ ", estado=" + estado + "]";
+				+  "]";
 	}
 	
 

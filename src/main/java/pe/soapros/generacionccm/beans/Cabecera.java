@@ -67,7 +67,7 @@ public class Cabecera {
 	
 	@Override
 	public String toString() {
-		return "Cabecera [detallepdf=" + detallepdf + ", detalleTXT=" + detalleTXT + ", detalleHTML=" + detalleHTML
+		return "Cabecera [detallepdf=" + detallePDF + ", detalleTXT=" + detalleTXT + ", detalleHTML=" + detalleHTML
 				+ ", EnvioSMS=" + EnvioSMS + ", detalleTrazabilidad=" + detalleTrazabilidad + ", detalleServicio="
 				+ detalleServicio + ", almacenamientoS3=" + almacenamientoS3 + ", almacenamientoFilenet="
 				+ almacenamientoFilenet + "]";

@@ -375,8 +375,7 @@ public class PeticionBO {
 
 		respuesta.setNumOperacion(solicitud.getNumOperacion());
 
-		String estado = detalles.get(tam - 1).getNomFase();
-		respuesta.setEstado(estado);
+		
 		logger.debug(ADMIN_USER, "Respuesta {}", respuesta);
 
 		return respuesta;

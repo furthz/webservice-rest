@@ -1749,11 +1749,10 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
             };
         }
         //VALIDAMOS QUE EL CAMPO DE LA ETIQUETA IndPDF SEA ="S", YA QUE DEPENDE SI ESTE CAMPO SI ES = S 
-        if (detPdf.getIndPDF().equals("N")) {
+        
+        if (detPdf.getIndPDF().equals("N") && indPdfS3.getIndS3PDF().equals("S")) {
             throw new JsonProcessingException("cabecera.detalleS3.indPDF.indS3PDF, No puede guardar documento que no existe") {
-                /**
-                 *
-                 */
+                
                 private static final long serialVersionUID = 1L;
 
                 @SuppressWarnings("unused")
@@ -1872,12 +1871,11 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
             };
         }
 
+        
         //VALIDAMOS QUE EL CAMPO DE LA ETIQUETA indTXT SEA ="S", YA QUE DEPENDE SI ESTE CAMPO SI ES = S 
-        if (detTxt.getIndTXT().equals("N")) {
+        if (detTxt.getIndTXT().equals("N") && indTxtS3.getIndS3TXT().equals("S")) {
             throw new JsonProcessingException("cabecera.detalleS3.indTXT.indS3TXT, No puede guardar documento que no existe") {
-                /**
-                 *
-                 */
+           
                 private static final long serialVersionUID = 1L;
 
                 @SuppressWarnings("unused")
@@ -1997,12 +1995,11 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
                 }
             };
         }
+        
         //VALIDAMOS QUE EL CAMPO DE LA ETIQUETA indTXT SEA ="S", YA QUE DEPENDE SI ESTE CAMPO SI ES = S 
-        if (detHtml.getIndHTML().equals("N")) {
+        if (detHtml.getIndHTML().equals("N") && indHtmlS3.getIndS3HTML().equals("S")) {
             throw new JsonProcessingException("cabecera.detalleS3.indHTML.indS3HTML, No puede guardar documento que no existe") {
-                /**
-                 *
-                 */
+                
                 private static final long serialVersionUID = 1L;
 
                 @SuppressWarnings("unused")

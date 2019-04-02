@@ -211,7 +211,10 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
         // PROCESO
         if (origen.has("proceso")) {
 
-            o.setProceso(origen.get("proceso").asText());
+        	if(!"null".equals(origen.get("proceso").asText())) {
+        		o.setProceso(origen.get("proceso").asText());
+        	}
+            
             logger.debug(ADMIN_USER, origen.get("proceso").asText());
 
         } else {
@@ -231,7 +234,10 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
         // SUBPROCESO
         if (origen.has("subproceso")) {
 
-            o.setSubproceso(origen.get("subproceso").asText());
+        	if(!"null".equals(origen.get("subproceso").asText())) {
+        		o.setSubproceso(origen.get("subproceso").asText());
+        	}
+            
             logger.debug(ADMIN_USER, origen.get("subproceso").asText());
 
         } else {
@@ -299,8 +305,8 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
 
             JsonNode identificador = origen.get("identificador");
             logger.debug(ADMIN_USER, origen.get("identificador"));
-
-            String[] identificadores = new String[3];
+            
+            String[] identificadores = new String[identificador.size()];
             int ind = 0;
             for (JsonNode j : identificador) {
                 identificadores[ind++] = j.asText();

@@ -1,7 +1,7 @@
 package pe.soapros.generacionccm.beans;
 
 public class detalleHTML {
-	String indHTML,archivo,indExito ,codError ,msgError;
+	String indHTML,archivo,indExito ,codEstado ,msgEstado;
 
 	public String getIndHTML() {
 		return indHTML;
@@ -27,21 +27,22 @@ public class detalleHTML {
 		this.indExito = indExito;
 	}
 
-	public String getCodError() {
-		return codError;
+	public String getCodEstado() {
+		return codEstado;
 	}
 
-	public void setCodError(String codError) {
-		this.codError = codError;
+	public void setCodEstado(String codEstado) {
+		this.codEstado = codEstado;
 	}
 
-	public String getMsgError() {
-		return msgError;
+	public String getMsgEstado() {
+		return msgEstado;
 	}
 
-	public void setMsgError(String msgError) {
-		this.msgError = msgError;
+	public void setMsgEstado(String msgEstado) {
+		this.msgEstado = msgEstado;
 	}
-	
+
+		
 	
 }

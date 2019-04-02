@@ -2,7 +2,7 @@ package pe.soapros.generacionccm.beans;
 
 public class Cabecera {
 	
-	private DetallePDF detallepdf;
+	private DetallePDF detallePDF;
 	private DetalleTXT detalleTXT;
 	private detalleHTML detalleHTML;
 	private DetalleSMS EnvioSMS;
@@ -24,11 +24,12 @@ public class Cabecera {
 	public void setAlmacenamientoFilenet(AlmacenamientoFilenet almacenamientoFilenet) {
 		this.almacenamientoFilenet = almacenamientoFilenet;
 	}
-	public DetallePDF getDetallepdf() {
-		return detallepdf;
+
+	public DetallePDF getDetallePDF() {
+		return detallePDF;
 	}
-	public void setDetallepdf(DetallePDF detallepdf) {
-		this.detallepdf = detallepdf;
+	public void setDetallePDF(DetallePDF detallePDF) {
+		this.detallePDF = detallePDF;
 	}
 	
 	public detalleHTML getDetalleHTML() {

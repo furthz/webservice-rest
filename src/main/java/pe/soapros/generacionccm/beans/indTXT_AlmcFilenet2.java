@@ -1,7 +1,7 @@
 package pe.soapros.generacionccm.beans;
 
 public class indTXT_AlmcFilenet2 {
-	String infFilenetTXT,indExito,codError,msgError,objectid;
+	String infFilenetTXT,indExito,codEstado,msgEstado,objectid;
 
 	public String getInfFilenetTXT() {
 		return infFilenetTXT;
@@ -19,20 +19,22 @@ public class indTXT_AlmcFilenet2 {
 		this.indExito = indExito;
 	}
 
-	public String getCodError() {
-		return codError;
+
+
+	public String getCodEstado() {
+		return codEstado;
 	}
 
-	public void setCodError(String codError) {
-		this.codError = codError;
+	public void setCodEstado(String codEstado) {
+		this.codEstado = codEstado;
 	}
 
-	public String getMsgError() {
-		return msgError;
+	public String getMsgEstado() {
+		return msgEstado;
 	}
 
-	public void setMsgError(String msgError) {
-		this.msgError = msgError;
+	public void setMsgEstado(String msgEstado) {
+		this.msgEstado = msgEstado;
 	}
 
 	public String getObjectid() {

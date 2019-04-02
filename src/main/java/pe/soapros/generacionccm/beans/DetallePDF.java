@@ -1,7 +1,7 @@
 package pe.soapros.generacionccm.beans;
 
 public class DetallePDF {
-	String indPDF,indExito ,codError ,msgError  ;
+	String indPDF,indExito ,codEstado ,msgEstado  ;
 
 	
 	public String getIndPDF() {
@@ -20,21 +20,31 @@ public class DetallePDF {
 		this.indExito = indExito;
 	}
 
-	public String getCodError() {
-		return codError;
+	public String getCodEstado() {
+		return codEstado;
 	}
 
-	public void setCodError(String codError) {
-		this.codError = codError;
+	public void setCodEstado(String codEstado) {
+		this.codEstado = codEstado;
 	}
 
-	public String getMsgError() {
-		return msgError;
+	public String getMsgEstado() {
+		return msgEstado;
 	}
 
-	public void setMsgError(String msgError) {
-		this.msgError = msgError;
+	public void setMsgEstado(String msgEstado) {
+		this.msgEstado = msgEstado;
 	}
+
+	@Override
+	public String toString() {
+		return "DetallePDF [indPDF=" + indPDF + ", indExito=" + indExito + ", codEstado=" + codEstado + ", msgEstado="
+				+ msgEstado + "]";
+	}
+
+	
+
+
 
 	
 	

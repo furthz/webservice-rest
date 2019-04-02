@@ -1,7 +1,7 @@
 package pe.soapros.generacionccm.beans;
 
 public class DetalleTrazabilidad {
-	String indTrazabilidad,indExito ,codError ,msgError ,valorretorno ;
+	String indTrazabilidad,indExito ,codEstado ,msgEstado ,valorretorno ;
 
 	
 	public String getIndTrazabilidad() {
@@ -20,20 +20,22 @@ public class DetalleTrazabilidad {
 		this.indExito = indExito;
 	}
 
-	public String getCodError() {
-		return codError;
+
+
+	public String getCodEstado() {
+		return codEstado;
 	}
 
-	public void setCodError(String codError) {
-		this.codError = codError;
+	public void setCodEstado(String codEstado) {
+		this.codEstado = codEstado;
 	}
 
-	public String getMsgError() {
-		return msgError;
+	public String getMsgEstado() {
+		return msgEstado;
 	}
 
-	public void setMsgError(String msgError) {
-		this.msgError = msgError;
+	public void setMsgEstado(String msgEstado) {
+		this.msgEstado = msgEstado;
 	}
 
 	public String getValorretorno() {

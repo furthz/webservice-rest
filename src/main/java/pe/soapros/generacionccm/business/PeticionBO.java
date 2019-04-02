@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import pe.soapros.generacionccm.beans.AlmacenamientoS3;
 import pe.soapros.generacionccm.beans.Cabecera;
+import pe.soapros.generacionccm.beans.CabeceraIN;
 import pe.soapros.generacionccm.beans.DetallePDF;
 import pe.soapros.generacionccm.beans.DetalleSMS;
 import pe.soapros.generacionccm.beans.DetalleServicio;
@@ -132,41 +133,58 @@ public class PeticionBO {
 		detHTML.setIndHTML(sol.getCabecera().getDetalleHTML().getIndHTML());
 		logger.debug(ADMIN_USER, "INDHTML: {}", sol.getCabecera().getDetalleHTML().getIndHTML());
 
+		CabeceraIN cabIn = sol.getCabecera();
+
+		boolean swSeguir = true;
+
 		if (hmap.get("Documentos generados") != null) {
 
 			logger.debug(ADMIN_USER, "DOCUMENTOS GENERADOS");
 
-			detPDF.setIndExito("S");
-			detPDF.setCodError("0");
-			detPDF.setMsgError("OK");
+			if (cabIn.getDetallePDF().getIndPDF().equals("S")) {
+				detPDF.setIndExito("S");
+				detPDF.setCodEstado("0");
+				detPDF.setMsgEstado("DOCUMENTOS GENERADOS");
+			}
 
-			detTXT.setIndExito("S");
-			detTXT.setCodError("0");
-			detTXT.setMsgError("OK");
+			if (cabIn.getDetalleTXT().getIndTXT().equals("S")) {
+				detTXT.setIndExito("S");
+				detTXT.setCodEstado("0");
+				detTXT.setMsgEstado("DOCUMENTOS GENERADOS");
+			}
 
-			detHTML.setIndExito("S");
-			detHTML.setCodError("0");
-			detHTML.setMsgError("OK");
+			if (cabIn.getDetalleHTML().getIndHTML().equals("S")) {
+				detHTML.setIndExito("S");
+				detHTML.setCodEstado("0");
+				detHTML.setMsgEstado("DOCUMENTOS GENERADOS");
+			}
 
 		} else {
 
 			logger.debug(ADMIN_USER, "DOCUMENTOS NO GENERADOS");
 
-			detPDF.setIndExito("N");
-			detPDF.setCodError("-1");
-			detPDF.setMsgError("Error en la generación");
+			if (cabIn.getDetallePDF().getIndPDF().equals("S")) {
+				detPDF.setIndExito("N");
+				detPDF.setCodEstado("-1");
+				detPDF.setMsgEstado(hmap.get("Error"));
+			}
 
-			detTXT.setIndExito("N");
-			detTXT.setCodError("-1");
-			detTXT.setMsgError("Error en la generación");
+			if (cabIn.getDetalleTXT().getIndTXT().equals("S")) {
+				detTXT.setIndExito("N");
+				detTXT.setCodEstado("-1");
+				detTXT.setMsgEstado(hmap.get("Error"));
+			}
 
-			detHTML.setIndExito("N");
-			detHTML.setCodError("-1");
-			detHTML.setMsgError("Error en la generación");
+			if (cabIn.getDetalleHTML().getIndHTML().equals("S")) {
+				detHTML.setIndExito("N");
+				detHTML.setCodEstado("-1");
+				detHTML.setMsgEstado(hmap.get("Error"));
+			}
 
+			swSeguir = false;
 		}
 
-		cabecera.setDetallepdf(detPDF);
+		cabecera.setDetallePDF(detPDF);
 		logger.debug(ADMIN_USER, "DETPDF: {}", detPDF);
 
 		cabecera.setDetalleTXT(detTXT);
@@ -175,75 +193,9 @@ public class PeticionBO {
 		cabecera.setDetalleHTML(detHTML);
 		logger.debug(ADMIN_USER, "DETHTML: {}", detHTML);
 
-		DetalleSMS detSMS = new DetalleSMS();
-
-		if (hmap.get("Envio SMS") != null) {
-
-			logger.debug(ADMIN_USER, "ENVIO SMS");
-			detSMS.setIndSMS("S");
-
-		} else {
-
-			logger.debug(ADMIN_USER, "ENVIO SMS NO");
-			detSMS.setIndSMS("N");
-
-		}
-
-		cabecera.setEnvioSMS(detSMS);
-		logger.debug(ADMIN_USER, "ENVIO SMS: {}", detSMS);
-
-		DetalleTrazabilidad detTraz = new DetalleTrazabilidad();
-
-		detTraz.setIndTrazabilidad(sol.getCabecera().getDetalleTrazabilidadCorreo().getIndTrazabilidad());
-		logger.debug(ADMIN_USER, "INDTRAZABILIDAD: {}",
-				sol.getCabecera().getDetalleTrazabilidadCorreo().getIndTrazabilidad());
-
-		if (hmap.get("Trazabilidad") != null) {
-
-			logger.debug(ADMIN_USER, "TRAZABILIDAD");
-
-			detTraz.setIndExito("S");
-			detTraz.setCodError("0");
-			detTraz.setMsgError("OK");
-			detTraz.setValorretorno(hmap.get("Trazabilidad"));
-
-		} else {
-
-			logger.debug(ADMIN_USER, "NO TRAZABILIDAD");
-			detTraz.setIndExito("N");
-			detTraz.setCodError("-1");
-			detTraz.setMsgError("Error Trazabilidad");
-			detTraz.setValorretorno(hmap.get("Trazabilidad"));
-
-		}
-
-		cabecera.setDetalleTrazabilidad(detTraz);
-
-		DetalleServicio detServ = new DetalleServicio();
-
-		detServ.setIndServicio(sol.getCabecera().getDetalleServicioGenerico().getIndServicioGenerico());
-		logger.debug(ADMIN_USER, "IND SERVICIO: {}",
-				sol.getCabecera().getDetalleServicioGenerico().getIndServicioGenerico());
-
-		if (hmap.get("Servicio Generico") != null) {
-
-			logger.debug(ADMIN_USER, "SERVICIO GENERICO");
-			detServ.setIndExito("S");
-			detServ.setCodError("0");
-			detServ.setMsgError("");
-			detServ.setValorretorno(hmap.get("Servicio Generico"));
-
-		} else {
-
-			logger.debug(ADMIN_USER, "NO SERVICIO GENERICO");
-			detServ.setIndExito("N");
-			detServ.setCodError("-1");
-			detServ.setMsgError("");
-
-		}
-
-		cabecera.setDetalleServicio(detServ);
-		logger.debug(ADMIN_USER, "DETSERV: {}", detServ);
+		/**************************************************
+		 * ALMACENAMIENTO EN S3
+		 ************************************************/
 
 		AlmacenamientoS3 almS3 = new AlmacenamientoS3();
 
@@ -264,46 +216,50 @@ public class PeticionBO {
 
 			logger.debug(ADMIN_USER, "DOCUMENTOS S3");
 
-			pdfS3.setIndExito("S");
-			pdfS3.setCodError("0");
-			pdfS3.setMsgError("OK");
-
-			if ("S".equals(pdfS3.getIndS3PDF())) {
+			if (cabIn.getDetalleS3().getIndPDF().getIndS3PDF().equals("S")) {
+				pdfS3.setIndExito("S");
+				pdfS3.setCodEstado("0");
+				pdfS3.setMsgEstado("Documento Subido a S3");
 				pdfS3.setRutaURLDestinoPDF(sol.getCabecera().getDetalleS3().getIndPDF().getRutaURLDestinoPDF());
 			}
 
-			txtS3.setIndExito("S");
-			txtS3.setCodError("0");
-			txtS3.setMsgError("OK");
-
-			if ("S".equals(txtS3.getIndS3TXT())) {
+			if (cabIn.getDetalleS3().getIndTXT().getIndS3TXT().equals("S")) {
+				txtS3.setIndExito("S");
+				txtS3.setCodEstado("0");
+				txtS3.setMsgEstado("Documento Subido a S3");
 				txtS3.setRutaURLDestinoTXT(sol.getCabecera().getDetalleS3().getIndTXT().getRutaURLDestinoTXT());
 			}
 
-			htmlS3.setIndExito("S");
-			htmlS3.setCodError("0");
-			htmlS3.setMsgError("OK");
-
-			if ("S".equals(htmlS3.getIndS3HTML())) {
+			if (cabIn.getDetalleS3().getIndHTML().getIndS3HTML().equals("S")) {
+				htmlS3.setIndExito("S");
+				htmlS3.setCodEstado("0");
+				htmlS3.setMsgEstado("Documento Subido a S3");
 				htmlS3.setRutaURLDestinoHTML(sol.getCabecera().getDetalleS3().getIndHTML().getRutaURLDestinoHTML());
 			}
 
-		} else {
+		} else if (hmap.get("Documentos Subidos S3") == null && swSeguir) {
 
 			logger.debug(ADMIN_USER, "NO DOCUMENTOS S3");
 
-			pdfS3.setIndExito("N");
-			pdfS3.setCodError("-1");
-			pdfS3.setMsgError("Error Subida S3");
+			if (cabIn.getDetalleS3().getIndPDF().getIndS3PDF().equals("S")) {
+				pdfS3.setIndExito("N");
+				pdfS3.setCodEstado("-1");
+				pdfS3.setMsgEstado(hmap.get("Error"));
+			}
 
-			txtS3.setIndExito("N");
-			txtS3.setCodError("-1");
-			txtS3.setMsgError("Error Subida S3");
+			if (cabIn.getDetalleS3().getIndTXT().getIndS3TXT().equals("S")) {
+				txtS3.setIndExito("N");
+				txtS3.setCodEstado("-1");
+				txtS3.setMsgEstado(hmap.get("Error"));
+			}
 
-			htmlS3.setIndExito("N");
-			htmlS3.setCodError("-1");
-			htmlS3.setMsgError("Error Subida S3");
+			if (cabIn.getDetalleS3().getIndHTML().getIndS3HTML().equals("S")) {
+				htmlS3.setIndExito("N");
+				htmlS3.setCodEstado("-1");
+				htmlS3.setMsgEstado(hmap.get("Error"));
+			}
 
+			swSeguir = false;
 		}
 
 		almS3.setIndPDF(pdfS3);
@@ -317,6 +273,102 @@ public class PeticionBO {
 
 		cabecera.setAlmacenamientoS3(almS3);
 		logger.debug(ADMIN_USER, "ALMACENAMIENTO S3", almS3);
+
+		/**********************************************
+		 * ENVIO A TRAZABILIDAD
+		 *********************************************/
+
+		DetalleTrazabilidad detTraz = new DetalleTrazabilidad();
+
+		detTraz.setIndTrazabilidad(sol.getCabecera().getDetalleTrazabilidadCorreo().getIndTrazabilidad());
+		logger.debug(ADMIN_USER, "INDTRAZABILIDAD: {}",
+				sol.getCabecera().getDetalleTrazabilidadCorreo().getIndTrazabilidad());
+
+		if (hmap.get("Trazabilidad") != null) {
+
+			logger.debug(ADMIN_USER, "TRAZABILIDAD");
+
+			if (cabIn.getDetalleTrazabilidadCorreo().getIndTrazabilidad().equals("S")) {
+				detTraz.setIndExito("S");
+				detTraz.setCodEstado("0");
+				detTraz.setMsgEstado("Trazabilidad realizada");
+				detTraz.setValorretorno(hmap.get("Trazabilidad"));
+			}
+
+		} else if (hmap.get("Trazabilidad") == null && swSeguir) {
+
+			logger.debug(ADMIN_USER, "NO TRAZABILIDAD");
+			if (cabIn.getDetalleTrazabilidadCorreo().getIndTrazabilidad().equals("S")) {
+				detTraz.setIndExito("N");
+				detTraz.setCodEstado("-1");
+				detTraz.setMsgEstado("Error Trazabilidad");
+				detTraz.setValorretorno(hmap.get("Error"));
+			}
+
+			swSeguir = false;
+
+		}
+
+		cabecera.setDetalleTrazabilidad(detTraz);
+
+		/***************************************************************
+		 * DETALLE DEL SERVICIO GENERICO
+		 *************************************************************/
+
+		DetalleServicio detServ = new DetalleServicio();
+
+		detServ.setIndServicio(sol.getCabecera().getDetalleServicioGenerico().getIndServicioGenerico());
+		logger.debug(ADMIN_USER, "IND SERVICIO: {}",
+				sol.getCabecera().getDetalleServicioGenerico().getIndServicioGenerico());
+
+		if (hmap.get("Servicio Generico") != null) {
+
+			logger.debug(ADMIN_USER, "SERVICIO GENERICO");
+			if (cabIn.getDetalleServicioGenerico().getIndServicioGenerico().equals("S")) {
+				detServ.setIndExito("S");
+				detServ.setCodEstado("0");
+				detServ.setMsgEstado("Servicio Genérico realizado");
+				detServ.setValorretorno(hmap.get("Servicio Generico"));
+			}
+
+		} else if (hmap.get("Servicio Generico") == null && swSeguir) {
+
+			logger.debug(ADMIN_USER, "NO SERVICIO GENERICO");
+			if (cabIn.getDetalleServicioGenerico().getIndServicioGenerico().equals("S")) {
+				detServ.setIndExito("N");
+				detServ.setCodEstado("-1");
+				detServ.setMsgEstado("Error Servicio Genérico");
+				detServ.setValorretorno(hmap.get("Error"));
+			}
+
+			swSeguir = false;
+
+		}
+
+		cabecera.setDetalleServicio(detServ);
+		logger.debug(ADMIN_USER, "DETSERV: {}", detServ);
+
+		/***********************************
+		 * + DETALLE DEL ENVIO A SMS
+		 ***********************************/
+
+		DetalleSMS detSMS = new DetalleSMS();
+
+		if (hmap.get("Envio SMS") != null) {
+
+			logger.debug(ADMIN_USER, "ENVIO SMS");
+			detSMS.setIndSMS("S");
+
+		} else if (hmap.get("Envio SMS") == null && swSeguir) {
+
+			logger.debug(ADMIN_USER, "ENVIO SMS NO");
+			detSMS.setIndSMS("N");
+
+			swSeguir = false;
+		}
+
+		cabecera.setEnvioSMS(detSMS);
+		logger.debug(ADMIN_USER, "ENVIO SMS: {}", detSMS);
 
 		respuesta.setCabecera(cabecera);
 		logger.debug(ADMIN_USER, "CABECERA: {}", cabecera);

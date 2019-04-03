@@ -96,7 +96,7 @@ public class PeticionBO {
 		List<Detalle> detalles = this.peticionRepository.detallesByOperacion(solicitud.getNumOperacion());
 		logger.debug(ADMIN_USER, "Detalles: {}", detalles.toString());
 
-		int tam = detalles.size();
+		//int tam = detalles.size();
 
 		HashMap<String, String> hmap = new HashMap<String, String>();
 

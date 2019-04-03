@@ -83,9 +83,11 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
         JsonNode PropiedadesFilenetHtml = null;
         JsonNode contentStreamFilenetHtml = null;
 
+        /*
         JsonNode metaDataPdf = null;
         JsonNode metaDataTxt = null;
         JsonNode metaDataHtml = null;
+        */
         JsonNode destinatario = null;
         JsonNode para = null;
         JsonNode conCopia = null;
@@ -1766,7 +1768,7 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
         if (indPdfS3.getIndS3PDF() != null && indPdfS3.getIndS3PDF().equals("S")) {
             // VALIDAMOS QUE LAS ETIQUETAS EXISTAN
             if (indPdf.has("metadata")) {
-                metaDataPdf = indPdf.get("metadata");
+                //metaDataPdf = indPdf.get("metadata");
                 logger.debug(ADMIN_USER, "METADATA {}", indPdf.get("metadata"));
             } else {
                 throw new JsonProcessingException("cabecera.detalleS3.indPdf.metadata, La etiqueta no existe ") {
@@ -1889,7 +1891,7 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
         if (indTxtS3.getIndS3TXT() != null && indTxtS3.getIndS3TXT().equals("S")) {
 
             if (indTxt.has("metadata")) {
-                metaDataHtml = indTxt.get("metadata");
+                //metaDataHtml = indTxt.get("metadata");
                 logger.debug(ADMIN_USER, "METADATA {}", indTxt.get("metadata"));
             } else {
                 throw new JsonProcessingException("cabecera.detalleS3.indTXT.metadata, La etiqueta no existe ") {
@@ -2012,7 +2014,7 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
         if (indHtmlS3.getIndS3HTML() != null && indHtmlS3.getIndS3HTML().equals("S")) {
             // VALISAMOS QUE EXISTA LAS ETIQUETAS
             if (indHtml.has("metadata")) {
-                metaDataHtml = indHtml.get("metadata");
+                //metaDataHtml = indHtml.get("metadata");
                 logger.debug(ADMIN_USER, "METADATA{}", indHtml.get("metadata"));
             } else {
                 throw new JsonProcessingException("cabecera.detalleS3.indHTML.metadata, La etiqueta no existe ") {

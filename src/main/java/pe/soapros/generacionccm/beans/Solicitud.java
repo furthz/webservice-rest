@@ -1,6 +1,5 @@
 package pe.soapros.generacionccm.beans;
 
-import javax.validation.Valid;
 
 import com.fasterxml.jackson.databind.JsonNode;
 

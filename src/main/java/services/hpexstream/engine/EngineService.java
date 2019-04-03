@@ -30,8 +30,8 @@ public class EngineService extends Service {
     static {
         URL url = null;
         try {
-            url = new URL("http://192.168.1.227:8080/EngineService/EngineService?wsdl");
-        	//url = new URL("http://172.23.2.115:8080/EngineService/EngineService?wsdl");
+            //url = new URL("http://192.168.1.227:8080/EngineService/EngineService?wsdl");
+        	url = new URL("http://172.23.2.115:8080/EngineService/EngineService?wsdl");
         } catch (MalformedURLException e) {
             java.util.logging.Logger.getLogger(EngineService.class.getName())
                 .log(java.util.logging.Level.INFO, 

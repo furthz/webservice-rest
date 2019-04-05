@@ -30,6 +30,7 @@ import pe.soapros.generacionccm.beans.IndHTML_AlmcS3;
 import pe.soapros.generacionccm.beans.IndPDF_AlmcS3;
 import pe.soapros.generacionccm.beans.IndTXT_AlmcS3;
 import pe.soapros.generacionccm.beans.PeticionOUT;
+import pe.soapros.generacionccm.beans.ResponseS3;
 import pe.soapros.generacionccm.beans.Respuesta;
 import pe.soapros.generacionccm.beans.Solicitud;
 import pe.soapros.generacionccm.beans.detalleHTML;
@@ -142,7 +143,7 @@ public class PeticionBO {
 		boolean swSeguir = true;
 
 		if (hmap.get("Documentos generados") != null) {
-
+			
 			logger.debug(ADMIN_USER, "DOCUMENTOS GENERADOS");
 
 			if (cabIn.getDetallePDF().getIndPDF().equals("S")) {
@@ -219,27 +220,29 @@ public class PeticionBO {
 
 			if (hmap.get("Documentos Subidos S3") != null) {
 
+				ResponseS3[] responseS3 = mapper.readValue(hmap.get("Solicitado"), ResponseS3[].class);
+				
 				logger.debug(ADMIN_USER, "DOCUMENTOS S3");
 
 				if (cabIn.getDetalleS3().getIndPDF().getIndS3PDF().equals("S")) {
 					pdfS3.setIndExito("S");
 					pdfS3.setCodEstado("0");
 					pdfS3.setMsgEstado("Documento Subido a S3");
-					pdfS3.setRutaURLDestinoPDF(sol.getCabecera().getDetalleS3().getIndPDF().getRutaURLDestinoPDF());
+					pdfS3.setRutaURLDestinoPDF(responseS3[0].getLocation());
 				}
 
 				if (cabIn.getDetalleS3().getIndTXT().getIndS3TXT().equals("S")) {
 					txtS3.setIndExito("S");
 					txtS3.setCodEstado("0");
 					txtS3.setMsgEstado("Documento Subido a S3");
-					txtS3.setRutaURLDestinoTXT(sol.getCabecera().getDetalleS3().getIndTXT().getRutaURLDestinoTXT());
+					txtS3.setRutaURLDestinoTXT(responseS3[1].getLocation());
 				}
 
 				if (cabIn.getDetalleS3().getIndHTML().getIndS3HTML().equals("S")) {
 					htmlS3.setIndExito("S");
 					htmlS3.setCodEstado("0");
 					htmlS3.setMsgEstado("Documento Subido a S3");
-					htmlS3.setRutaURLDestinoHTML(sol.getCabecera().getDetalleS3().getIndHTML().getRutaURLDestinoHTML());
+					htmlS3.setRutaURLDestinoHTML(responseS3[2].getLocation());
 				}
 
 			} else if (hmap.get("Documentos Subidos S3") == null && swSeguir) {
@@ -265,6 +268,27 @@ public class PeticionBO {
 				}
 
 				swSeguir = false;
+				
+			} else if(!swSeguir) {
+				
+				if (cabIn.getDetalleS3().getIndPDF().getIndS3PDF().equals("S")) {
+					pdfS3.setIndExito("N");
+					pdfS3.setCodEstado("-2");
+					pdfS3.setMsgEstado("No se ejecutó esta fase");
+				}
+
+				if (cabIn.getDetalleS3().getIndTXT().getIndS3TXT().equals("S")) {
+					txtS3.setIndExito("N");
+					txtS3.setCodEstado("-2");
+					txtS3.setMsgEstado("No se ejecutó esta fase");
+				}
+
+				if (cabIn.getDetalleS3().getIndHTML().getIndS3HTML().equals("S")) {
+					htmlS3.setIndExito("N");
+					htmlS3.setCodEstado("-2");
+					htmlS3.setMsgEstado("No se ejecutó esta fase");
+				}
+				
 			}
 
 			almS3.setIndPDF(pdfS3);
@@ -317,6 +341,14 @@ public class PeticionBO {
 
 				swSeguir = false;
 
+			}else if(!swSeguir) {
+				
+				if (cabIn.getDetalleTrazabilidadCorreo().getIndTrazabilidad().equals("S")) {
+					detTraz.setIndExito("N");
+					detTraz.setCodEstado("-2");
+					detTraz.setMsgEstado("No se ejecutó esta fase");
+				}
+				
 			}
 
 			cabecera.setDetalleTrazabilidad(detTraz);
@@ -359,6 +391,15 @@ public class PeticionBO {
 
 				swSeguir = false;
 
+			} else if(!swSeguir) {
+				
+				if (cabIn.getDetalleServicioGenerico().getIndServicioGenerico().equals("S")) {
+					detServ.setIndExito("N");
+					detServ.setCodEstado("-2");
+					detServ.setMsgEstado("No se ejecutó esta fase");
+					detServ.setValorretorno(hmap.get("Error"));
+				}
+				
 			}
 
 			cabecera.setDetalleServicio(detServ);
@@ -388,6 +429,8 @@ public class PeticionBO {
 				detSMS.setIndSMS("N");
 
 				swSeguir = false;
+			} else if(!swSeguir) {
+				detSMS.setIndSMS("N");
 			}
 
 			cabecera.setEnvioSMS(detSMS);

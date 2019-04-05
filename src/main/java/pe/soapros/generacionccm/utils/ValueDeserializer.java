@@ -1589,6 +1589,8 @@ public class ValueDeserializer extends JsonDeserializer<Solicitud> {
                 }
             };
         }
+        
+        cab.setDetalleTrazabilidadCorreo(detTraz);
 
         /**
          * ******************************************************************************

@@ -1,8 +1,10 @@
 package pe.soapros.generacionccm.beans;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 public class IndHTMLINDetalleS3 {
     String indS3HTML;
-    //String metadata;
+    JsonNode metadata;
     String rutaURLDestinoHTML;
 
     public String getIndS3HTML() {
@@ -12,16 +14,18 @@ public class IndHTMLINDetalleS3 {
     public void setIndS3HTML(String indS3HTML) {
         this.indS3HTML = indS3HTML;
     }
-    /*
-    public String getMetadata() {
-        return metadata;
-    }
+   
+    
+    
+    public JsonNode getMetadata() {
+		return metadata;
+	}
 
-    public void setMetadata(String metadata) {
-        this.metadata = metadata;
-    }
-*/
-    public String getRutaURLDestinoHTML() {
+	public void setMetadata(JsonNode metadata) {
+		this.metadata = metadata;
+	}
+
+	public String getRutaURLDestinoHTML() {
         return rutaURLDestinoHTML;
     }
 

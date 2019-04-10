@@ -1,12 +1,14 @@
 package pe.soapros.generacionccm.beans;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 public class IndPDFINDetalleS3 {
 	
     private String indS3PDF;
 
     private String rutaURLDestinoPDF;
     
-
+    private JsonNode metadata;
 	
 	public String getIndS3PDF() {
 		return indS3PDF;
@@ -19,16 +21,15 @@ public class IndPDFINDetalleS3 {
 	}
 	public void setRutaURLDestinoPDF(String rutaURLDestinoPDF) {
 		this.rutaURLDestinoPDF = rutaURLDestinoPDF;
-	}
-	/*
-	public Gson getMetadata() {
+	}	
+
+	public JsonNode getMetadata() {
 		return metadata;
 	}
-	public void setMetadata(Gson metadata) {
+	public void setMetadata(JsonNode metadata) {
 		this.metadata = metadata;
 	}
-
-    */
+	
 	@Override
 	public String toString() {
 		return "IndPDFINDetalleS3 [indS3PDF=" + indS3PDF + ", rutaURLDestinoPDF=" + rutaURLDestinoPDF + "]";

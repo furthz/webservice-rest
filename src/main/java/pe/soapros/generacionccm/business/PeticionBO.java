@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -110,6 +111,8 @@ public class PeticionBO {
 		logger.debug(ADMIN_USER, "Input Solicitado: {}", hmap.get("Solicitado"));
 
 		ObjectMapper mapper = new ObjectMapper();
+		mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+		mapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
 
 		Solicitud sol = mapper.readValue(hmap.get("Solicitado"), Solicitud.class);
 		logger.debug(ADMIN_USER, "JSON: {}", sol);
@@ -219,8 +222,12 @@ public class PeticionBO {
 			logger.debug(ADMIN_USER, "INDS3HTML: {}", sol.getCabecera().getDetalleS3().getIndHTML().getIndS3HTML());
 
 			if (hmap.get("Documentos Subidos S3") != null) {
-
-				ResponseS3[] responseS3 = mapper.readValue(hmap.get("Solicitado"), ResponseS3[].class);
+				
+				 
+				logger.debug(ADMIN_USER, "JSON S3: {}", hmap.get("Documentos Subidos S3"));
+				ResponseS3[] responseS3 = mapper.readValue(hmap.get("Documentos Subidos S3"), ResponseS3[].class);
+				
+				logger.debug(ADMIN_USER, "Response S3[0] {}", responseS3[0].toString());
 				
 				logger.debug(ADMIN_USER, "DOCUMENTOS S3");
 
@@ -397,7 +404,7 @@ public class PeticionBO {
 					detServ.setIndExito("N");
 					detServ.setCodEstado("-2");
 					detServ.setMsgEstado("No se ejecutó esta fase");
-					detServ.setValorretorno(hmap.get("Error"));
+					//detServ.setValorretorno(hmap.get("Error"));
 				}
 				
 			}

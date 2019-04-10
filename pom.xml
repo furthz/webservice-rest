@@ -30,23 +30,18 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
-			
 			<exclusions>
-				
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-logging</artifactId>
 				</exclusion>
-				 
 				<exclusion>
 					<groupId>org.yaml</groupId>
 					<artifactId>snakeyaml</artifactId>
 				</exclusion>
-			
 			</exclusions>
-			 
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-log4j2</artifactId>
@@ -57,33 +52,22 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		 
-	
-		 
-		
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 		</dependency>
-
-
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-
 			<exclusions>
-				<!-- 
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-tomcat</artifactId>
 				</exclusion>
-			 	 -->
 			</exclusions>
-
-		</dependency>		     
-
-
-
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -104,73 +88,47 @@
 		</dependency>
 
 		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <exclusions>
-            	<exclusion>
-            		<groupId>org.slf4j</groupId>
-            		<artifactId>slf4j-api</artifactId>
-            	</exclusion>
-            </exclusions>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
-        
-        <!-- https://mvnrepository.com/artifact/com.oracle/ojdbc7 -->
+
+		<!-- https://mvnrepository.com/artifact/com.oracle/ojdbc7 -->
+		<!-- <dependency> <groupId>com.oracle</groupId> <artifactId>ojdbc7</artifactId> 
+			<version>12.1.0.2</version> </dependency> -->
 		<dependency>
-		    <groupId>com.oracle</groupId>
-		    <artifactId>ojdbc7</artifactId>
-		    <version>12.1.0.2</version>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.0</version>
 		</dependency>
 
 		<dependency>
-        <groupId>javax.xml.bind</groupId>
-        <artifactId>jaxb-api</artifactId>
-        <version>2.3.0</version>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.11</version>
 		</dependency>
+
+
+
 		
-		<dependency>
-    <groupId>commons-codec</groupId>
-    <artifactId>commons-codec</artifactId>
-    <version>1.11</version>
-</dependency>
-	 	
 	</dependencies>
 
 	<build>
 		<plugins>
-			<!-- 
-			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>3.2.2</version>
-				<configuration>
-					<packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
-				</configuration>
-			</plugin>
-			 -->
-			 <!-- 
-			 <plugin>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-codegen-plugin</artifactId>
-            <version>2.4.2</version>
-            <executions>
-               <execution>
-                  <id>generate-sources</id>
-                  <phase>generate-sources</phase>
-                  <configuration>
-                     <sourceRoot>src/main/java</sourceRoot>
-                     <wsdlOptions>
-                        <wsdlOption>
-                           <wsdl>src/main/wsdl/EngineService.wsdl</wsdl>
-                        </wsdlOption>
-                           
-                     </wsdlOptions>
-                  </configuration>
-                  <goals>
-                     <goal>wsdl2java</goal>
-                  </goals>
-               </execution>
-            </executions>
-         </plugin>
-          -->
+			<!-- <plugin> <artifactId>maven-war-plugin</artifactId> <version>3.2.2</version> 
+				<configuration> <packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes> 
+				</configuration> </plugin> -->
+			<!-- <plugin> <groupId>org.apache.cxf</groupId> <artifactId>cxf-codegen-plugin</artifactId> 
+				<version>2.4.2</version> <executions> <execution> <id>generate-sources</id> 
+				<phase>generate-sources</phase> <configuration> <sourceRoot>src/main/java</sourceRoot> 
+				<wsdlOptions> <wsdlOption> <wsdl>src/main/wsdl/EngineService.wsdl</wsdl> 
+				</wsdlOption> </wsdlOptions> </configuration> <goals> <goal>wsdl2java</goal> 
+				</goals> </execution> </executions> </plugin> -->
 		</plugins>
 		<resources>
 			<resource>
@@ -180,7 +138,7 @@
 		</resources>
 
 	</build>
-	
+
 
 	<repositories>
 		<repository>
@@ -200,9 +158,9 @@
 			</snapshots>
 		</repository>
 		<repository>
-      <id>codelds</id>
-      <url>https://code.lds.org/nexus/content/groups/main-repo</url>
-    </repository>
+			<id>codelds</id>
+			<url>https://code.lds.org/nexus/content/groups/main-repo</url>
+		</repository>
 
 
 	</repositories>

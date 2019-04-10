@@ -1,11 +1,20 @@
 package pe.soapros.generacionccm.beans;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class ResponseS3 {
 
+	@JsonProperty("ETag")
 	private String ETag;
+	
+	@JsonProperty("Location")
 	private String Location;
+	
 	private String Key;
+	
+	@JsonProperty("Bucket")
 	private String Bucket;
+	
 	public String getETag() {
 		return ETag;
 	}

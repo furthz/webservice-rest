@@ -1,12 +1,28 @@
+<!-- 
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <deployment>
- 
-    <dependencies>
-      <module name="org.springframework.spring" export="true" meta-inf="export"/>
+<jboss-deployment-structure
+	xmlns="urn:jboss:deployment-structure:1.2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<deployment>
+		
+		
+		<dependencies>
+			<module name="org.springframeworkboot" />
+			<module name="org.apache.commons.codec" />
+			<module name="javax.xml.jaxb-api" />
+		</dependencies>
 
-    </dependencies>
-  </deployment>
+		<exclusions>
+			<module
+				name="org.springframework.boot.spring-boot-starter-logging" />
+			<module name="org.slf4j" />
+			<module name="org.slf4j.impl" />
+			<module
+				name="org.springframework.boot.spring-boot-starter-tomcat" />
+		</exclusions>
+		 
+	</deployment>
 </jboss-deployment-structure>
 
+ -->
